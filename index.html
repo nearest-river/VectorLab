@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VectorLab — Linear Algebra, Polynomials &amp; Calculus with Step-by-Step Guides</title>
+<meta name="description" content="Free interactive math tool with step-by-step solutions and written guides: matrix rank, row reduction, Gaussian elimination, null space, eigenvalues and eigenvectors, long division, partial fractions, limits, derivatives and integrals.">
+<link rel="canonical" href="https://vectorlab.co.in/">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#060913"><meta property="og:site_name" content="VectorLab"><meta property="og:type" content="website"><meta property="og:title" content="VectorLab — Linear Algebra, Polynomials &amp; Calculus with Step-by-Step Guides"><meta property="og:description" content="Free interactive math tool with step-by-step solutions and written guides: matrix rank, row reduction, Gaussian elimination, null space, eigenvalues and eigenvectors, long division, partial fractions, limits, derivatives and integrals."><meta property="og:url" content="https://vectorlab.co.in/"><meta property="og:image" content="https://vectorlab.co.in/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="VectorLab logo"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="VectorLab — Linear Algebra, Polynomials &amp; Calculus with Step-by-Step Guides"><meta name="twitter:description" content="Free interactive math tool with step-by-step solutions and written guides: matrix rank, row reduction, Gaussian elimination, null space, eigenvalues and eigenvectors, long division, partial fractions, limits, derivatives and integrals."><meta name="twitter:image" content="https://vectorlab.co.in/og-image.png">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/calculus.css">
+<link rel="stylesheet" href="css/eigen.css">
+<style>
+/* Calculus "coming soon" card (kept here so it works regardless of css/style.css version) */
+.comingsoon{max-width:480px;margin:60px auto;text-align:center;padding:48px 32px}
+.comingsoon h2{margin:0 0 10px}
+.comingsoon-msg{font-family:var(--math);font-size:28px;color:var(--mint);margin:0 0 12px}
+/* restored tail of stylesheet (sub-tabs, Gaussian elimination, partial fractions), so the site still looks right even if css/style.css is cut short */
+.sm-result{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline;background:rgba(92,242,176,.08);border:1px solid rgba(92,242,176,.35);border-radius:14px;padding:12px 16px;margin:2px 0 16px}
+.sm-result .sm-rlabel{font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:var(--dim);margin-right:8px}
+.sm-result .sm-rval{font-family:var(--math);font-size:17px;color:var(--mint)}
+.sm-result .sm-rgroup{display:flex;align-items:baseline;flex-wrap:wrap;gap:.15em .5em;max-width:100%;overflow-x:auto}
+.sm-result .sm-rgroup math{font-family:var(--math);font-size:1.1em;color:var(--mint)}
+/* synthetic-division coefficient table */
+.sm-syn-wrap{margin:2px 0 16px}
+.sm-syn-root{display:flex;align-items:baseline;gap:8px;color:var(--dim);font-size:11px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:8px}
+.sm-syn-root .sm-term,.sm-syn-root math{font-family:var(--math);font-size:15px;color:var(--amber);text-transform:none;letter-spacing:0}
+.sm-syn-tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.sm-syn-table{border-collapse:collapse}
+.sm-syn-table td{padding:7px 14px;text-align:center;white-space:nowrap;min-width:44px}
+.sm-syn-table .sm-term,.sm-syn-table math{font-family:var(--math);font-size:16px}
+.sm-syn-coef td{color:var(--ink)}
+.sm-syn-prod td{color:var(--amber)}
+.sm-syn-prod td.sm-syn-blank{color:var(--dim)}
+.sm-syn-sum td{color:var(--mint);font-weight:600;border-top:1px solid var(--line)}
+.sm-syn-sum td.sm-syn-remainder{color:var(--coral);position:relative}
+.sm-syn-sum td.sm-syn-remainder::before{content:'';position:absolute;left:6px;right:6px;top:-1px;border-top:2px solid var(--coral)}
+/* Gaussian elimination — matrix entry grid + solution list */
+.sm-mat-sizes{gap:14px}
+.sm-mat-sizes input[type=number]{width:56px;text-align:center;font-family:var(--ui);font-size:13px;color:var(--ink);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:6px 8px}
+.sm-mat-gridwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:2px 0 12px}
+.sm-mat-grid{border-collapse:separate;border-spacing:6px}
+.sm-mat-grid td{padding:0}
+.sm-mat-grid input{width:56px;text-align:center;font-family:var(--math);font-size:15px;color:var(--ink);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:7px 4px}
+.sm-mat-grid input:focus{outline:2px solid var(--mint);outline-offset:1px;border-color:transparent}
+.sm-mat-grid td.sm-mat-aug{border-left:2px solid var(--line);padding-left:10px}
+.sm-mat-varname{width:56px;text-align:center;color:var(--dim);font-size:12px;font-family:var(--math)}
+.sm-gauss-solset{display:flex;flex-direction:column;gap:6px;margin-top:2px}
+.sm-gauss-solset .sm-expr{color:var(--mint)}
+.sm-gauss-free{color:var(--amber)!important}
+.sm-step-pivot h3{color:var(--amber)}
+.sm-step-swap h3{color:var(--violet)}
+.sm-step-subtract2 h3{color:var(--coral)}
+.sm-step-inconsistent h3,.sm-step-none h3{color:var(--coral)}
+/* ===== category nav + section wrappers (merge) ===== */
+.catbar{display:flex;justify-content:flex-start;margin:0 0 22px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.catbar::-webkit-scrollbar{display:none}
+#secLinAlg[hidden],#secCalc[hidden]{display:none!important}
+#calc-shell{max-width:920px;margin:0 auto}
+
+/* ---- tab strip (Vector sub-tabs + Higher Algebra sub-tabs): real tabs, not a cramped segmented pill ---- */
+.tabstrip{display:flex;gap:2px;background:none;border:0;border-radius:0;padding:0 0 0 2px;width:max-content;min-width:100%;border-bottom:1px solid var(--line)}
+.tabstrip button{font:inherit;font-size:12.5px;font-weight:500;color:var(--dim);background:none;border:0;border-radius:10px 10px 0 0;padding:11px 16px;cursor:pointer;white-space:nowrap;position:relative;transition:color .15s,background-color .15s}
+.tabstrip button:hover{color:var(--ink);background:rgba(255,255,255,.03)}
+.tabstrip button[aria-pressed=true]{color:var(--mint);background:rgba(92,242,176,.08)}
+.tabstrip button[aria-pressed=true]::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;border-radius:2px;background:var(--mint)}
+@media (max-width:620px){.tabstrip button{font-size:11.5px;padding:10px 12px}}
+
+/* ---- Partial fractions: a real stacked fraction, not a borrowed ÷ layout ---- */
+.sm-pfd-frac{display:inline-flex;flex-direction:column;align-items:stretch;gap:2px;margin:2px 0 4px;max-width:100%}
+.sm-pfd-lbl{font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--dim);margin:0 0 2px 2px}
+.sm-pfd-lbl em{font-style:normal;color:var(--amber);text-transform:none;letter-spacing:0}
+.sm-pfd-frac .sm-mathbox{width:100%;text-align:center;white-space:nowrap;overflow-x:auto}
+.sm-pfd-bar{border:0;border-top:2px solid var(--ink);margin:4px 6px;opacity:.85}
+.sm-pfd-note{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--dim);background:rgba(255,200,87,.06);border:1px solid rgba(255,200,87,.25);border-radius:10px;padding:8px 11px;margin:2px 0 14px}
+.sm-pfd-note b{color:var(--amber);font-weight:600}
+
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5434375962653833"
+     crossorigin="anonymous"></script>
+<style>.gpill{margin-left:auto;align-self:center;display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:12px;color:var(--dim);text-decoration:none;padding:5px 12px 5px 8px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03);white-space:nowrap;transition:color .2s,border-color .2s,background .2s}.gpill i{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:rgba(92,242,176,.12);color:var(--mint);font:italic 600 11px Georgia,serif}.gpill:hover,.gpill:focus-visible{color:var(--mint);border-color:rgba(92,242,176,.4);background:rgba(92,242,176,.06)}</style></head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M5 29V5M5 29h24" stroke="#4a5583" stroke-width="1.5" fill="none"/><path d="M5 29L26 29" stroke="#5cf2b0" stroke-width="2.4"/><path d="M5 29L11 8" stroke="#ff6b6b" stroke-width="2.4"/><path d="M5 29L26 29L32 8L11 8Z" fill="rgba(139,108,255,.25)" stroke="#8b6cff" stroke-width="1"/></svg>
+      <div><h1>VectorLab</h1><p>Visualize vectors, solve algebra &amp; calculus step by step, with guides</p></div>
+    </div>
+    <div class="seg" id="cats" role="group" aria-label="Category">
+      <button aria-pressed="true" data-cat="linalg">Vector</button>
+      <button aria-pressed="false" data-cat="calc">Higher Algebra</button>
+      <button aria-pressed="false" data-cat="calculus">Calculus</button>
+    </div>
+  </header>
+
+  <nav class="catbar" id="linalgNav" aria-label="Section">
+    <div class="tabstrip" id="tabs" role="group" aria-label="Section"><button aria-pressed="true" data-tab="1">Matrix rank</button><button aria-pressed="false" data-tab="2">Vector explorer</button><button aria-pressed="false" data-tab="3">Row reduction</button><button aria-pressed="false" data-tab="4">3D &amp; null space</button><button aria-pressed="false" data-tab="5">Gaussian elimination</button><button aria-pressed="false" data-tab="6">Eigenvectors</button></div>
+  </nav>
+
+  <div id="secLinAlg">
+  <div class="layout" id="p1">
+    <section class="glass" id="matrix">
+      <h2>Matrix A</h2>
+      <div class="seg" id="sizes" role="group" aria-label="Matrix size"></div>
+      <div class="mxwrap"><div class="mx" id="mx"></div></div>
+      <div class="chips" id="presets" aria-label="Presets"></div>
+      <p class="hint">Type numbers or fractions like 1/3. Arrow keys nudge a value by 0.5 (Shift: 0.1).</p>
+    </section>
+
+    <section class="glass" id="results" aria-live="polite"></section>
+
+    <section class="glass" id="viz">
+      <div class="pair">
+        <div class="cvcell"><h3><span id="tin">Input space</span><em>x</em></h3><canvas id="cin" aria-label="Input space"></canvas></div>
+        <div class="cvcell"><h3><span id="tout">Output space</span><em>Ax</em></h3><canvas id="cout" aria-label="Output space"></canvas></div>
+      </div>
+      <div class="ctrl">
+        <label>Morph<input type="range" id="morph" min="0" max="100" value="100" aria-label="Morph from identity to A"></label>
+        <button class="btn" id="replay">Replay from identity</button>
+        <label>View ±<span id="rv">5</span><input type="range" id="range" min="2" max="12" step="0.5" value="5" aria-label="View range"></label>
+      </div>
+      <div class="legend">
+        <span style="--c:var(--mint)">e₁ / Ae₁</span>
+        <span style="--c:var(--coral)">e₂ / Ae₂</span>
+        <span style="--c:var(--violet)">unit square</span>
+        <span style="--c:var(--pink)">square, orientation flipped</span>
+        <span style="--c:var(--amber)">image</span>
+        <span class="dash" style="--c:var(--pink)">kernel</span>
+      </div>
+      <div id="explain"></div>
+    </section>
+  </div>
+
+  <div class="layout" id="p2" hidden>
+    <section class="glass" id="vecs">
+      <h2>Vectors in ℝ²</h2>
+      <div id="vlist"></div>
+      <div class="chips" style="margin-top:12px">
+        <button class="chip" id="vadd">Add vector</button>
+        <button class="chip" id="vrand">Randomize</button>
+        <button class="chip" id="vreset">Reset</button>
+      </div>
+      <p class="hint">Drag a vector tip on the plane, or type components. The checkbox includes or excludes a vector from the span.</p>
+    </section>
+
+    <section class="glass" id="ops">
+      <h2>Linear combination</h2>
+      <div class="sel">
+        <label>u <select id="su" aria-label="Vector u"></select></label>
+        <label>v <select id="sv" aria-label="Vector v"></select></label>
+      </div>
+      <label class="sl">a<input type="range" id="sa" min="-3" max="3" step="0.05" value="1" aria-label="Scalar a"><output id="oa">1</output></label>
+      <label class="sl">b<input type="range" id="sb" min="-3" max="3" step="0.05" value="1" aria-label="Scalar b"><output id="ob">1</output></label>
+      <div class="chips" id="opchips">
+        <button class="chip" data-op="add">u + v</button>
+        <button class="chip" data-op="sub">u − v</button>
+        <button class="chip" data-op="scale">c · u</button>
+      </div>
+      <div class="ctrl" style="margin:12px 0 0">
+        <div class="seg" id="modes" role="group" aria-label="Method"><button data-mode="tip" aria-pressed="true">Tip-to-tail</button><button data-mode="para" aria-pressed="false">Parallelogram</button></div>
+        <button class="btn" id="eplay">Animate</button>
+      </div>
+      <label class="chk"><input type="checkbox" id="showop" checked> Show operation on the plane</label>
+      <div class="expr" id="expr"></div>
+      <p class="hint" id="opnote"></p>
+    </section>
+
+    <section class="glass" id="span">
+      <h2>Span and independence</h2>
+      <div id="spanbody"></div>
+    </section>
+
+    <section class="glass" id="vizE">
+      <h3 class="eh">Plane ℝ²</h3>
+      <canvas id="cex" aria-label="Vector plane"></canvas>
+      <div class="ctrl">
+        <label>View ±<span id="rvE">5</span><input type="range" id="rangeE" min="2" max="12" step="0.5" value="5" aria-label="View range"></label>
+      </div>
+      <div class="legend">
+        <span style="--c:var(--mint)">input vectors</span>
+        <span style="--c:rgba(92,242,176,.5)">scaled a·u, b·v</span>
+        <span style="--c:#fff">resultant w</span>
+        <span style="--c:var(--amber)">span</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="layout" id="p3" hidden>
+    <div class="stack">
+      <section class="glass" id="rin">
+        <h2>Matrix A</h2>
+        <div class="seg" id="rsizes" role="group" aria-label="Matrix size"></div>
+        <div class="chips rsz">
+          <button class="chip" id="raddr">+ Row</button><button class="chip" id="rdelr">− Row</button>
+          <button class="chip" id="raddc">+ Column</button><button class="chip" id="rdelc">− Column</button>
+        </div>
+        <div class="mxwrap"><div class="mx" id="rmx"></div></div>
+        <div class="chips" style="justify-content:center">
+          <button class="chip" id="rrand">Random</button><button class="chip" id="rreset">Reset</button><button class="chip" id="rclear">Clear</button>
+        </div>
+        <h3 class="eh" style="margin:16px 0 8px">Examples</h3>
+        <div class="chips" id="rpresets" aria-label="Examples"></div>
+        <div class="opts">
+          <div class="opt"><span>Arithmetic</span><div class="seg" id="rmode" role="group" aria-label="Arithmetic"><button data-v="exact" aria-pressed="true">Exact</button><button data-v="numeric" aria-pressed="false">Floating point</button></div></div>
+          <div class="opt"><span>Show</span><div class="seg" id="rdisp" role="group" aria-label="Number display"><button data-v="frac" aria-pressed="true">Fractions</button><button data-v="dec" aria-pressed="false">Decimals</button></div></div>
+        </div>
+        <p class="hint">Type integers, decimals or fractions like 1/3. Arrow keys nudge a value by 0.5 (Shift: 0.1); Enter moves to the next cell.</p>
+      </section>
+      <section class="glass" id="rres"></section>
+    </div>
+    <div class="stack">
+      <section class="glass" id="rstep">
+        <div class="rhead"><h2>Row reduction</h2>
+          <div class="seg" id="ralgo" role="group" aria-label="Algorithm"><button data-v="gauss" aria-pressed="false">Gaussian: REF</button><button data-v="gj" aria-pressed="true">Gauss–Jordan: RREF</button></div>
+        </div>
+        <div class="phase"><span id="rphase"></span><span id="rcount"></span></div>
+        <div class="rrefbox" style="margin:10px 0 4px"><div id="rmat"></div></div>
+        <div class="legend">
+          <span style="--c:var(--mint)">pivot</span><span style="--c:rgba(92,242,176,.45)">pivot row</span><span style="--c:rgba(139,108,255,.7)">pivot column</span><span style="--c:var(--amber)">row being changed</span>
+        </div>
+        <div class="opline" id="rop" aria-live="polite"></div>
+        <div class="ctrl rctl">
+          <button class="btn alt" id="rprev">Previous</button><button class="btn" id="rnext">Next</button>
+          <button class="btn alt" id="rplay">Play</button><button class="btn alt" id="rend">Finish</button><button class="btn alt" id="rrestart">Reset steps</button>
+        </div>
+        <div class="scrub"><input type="range" id="rscrub" min="0" max="0" value="0" aria-label="Step"><span id="rscrubv"></span></div>
+        <div id="redu" aria-live="polite"></div>
+      </section>
+      <section class="glass" id="rgeo">
+        <h2>Columns as vectors</h2>
+        <div class="geo" id="rgeobox">
+          <div id="rcvwrap">
+            <canvas id="rcv" aria-label="Column vectors of A in the plane"></canvas>
+            <div class="ctrl">
+              <label>View ±<span id="rvR">5</span><input type="range" id="rangeR" min="2" max="12" step="0.5" value="5" aria-label="View range"></label>
+              <label class="chk" style="margin:0"><input type="checkbox" id="rghost" checked> Show current-step columns</label>
+            </div>
+            <div class="legend">
+              <span style="--c:#e9edf8">filled tip: pivot column</span><span class="ring" style="--c:#e9edf8">ring tip: dependent column</span><span class="dash" style="--c:#e9edf8">dashed: column of current matrix</span><span style="--c:var(--amber)">span of the columns</span>
+            </div>
+          </div>
+          <div id="rcols"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="layout p4" id="p4" hidden>
+    <section class="glass" id="v3vecs">
+      <h2>3D vectors</h2>
+      <div id="v3list"></div>
+      <div class="chips" style="margin-top:12px">
+        <button class="chip" id="v3add">Add vector</button>
+        <button class="chip" id="v3rand">Randomize</button>
+        <button class="chip" id="v3reset">Reset</button>
+      </div>
+      <p class="hint">Drag on the scene to rotate, scroll to zoom. The checkbox includes or excludes a vector from the span.</p>
+      <dl class="facts" id="v3facts" style="margin-top:14px"></dl>
+    </section>
+
+    <section class="glass" id="v3viz">
+      <h3 class="eh">Span in ℝ³</h3>
+      <div class="c3wrap"><canvas id="c3v" aria-label="3D vector space"></canvas><div class="c3load" id="c3vload">Loading 3D engine…</div></div>
+      <div class="ctrl"><button class="btn" id="v3resetcam">Reset camera</button></div>
+      <div class="legend">
+        <span style="--c:var(--mint)">included vector</span><span style="--c:#4a5583">excluded vector</span>
+        <span style="--c:var(--amber)">span (line / plane)</span>
+      </div>
+    </section>
+
+    <section class="glass" id="m3in">
+      <h2>3×3 matrix A</h2>
+      <div class="mxwrap"><div class="mx" id="m3mx"></div></div>
+      <div class="chips" id="m3presets" aria-label="Presets"></div>
+      <p class="hint">Columns of A become the transformed vectors Ae₁, Ae₂, Ae₃ below.</p>
+      <dl class="facts" id="m3facts" style="margin-top:14px"></dl>
+    </section>
+
+    <section class="glass" id="m3viz">
+      <h3 class="eh">Columns as transformed basis vectors</h3>
+      <div class="c3wrap"><canvas id="c3m" aria-label="3D matrix transformation"></canvas><div class="c3load" id="c3mload">Loading 3D engine…</div></div>
+      <div class="ctrl"><button class="btn" id="m3resetcam">Reset camera</button></div>
+      <div class="legend">
+        <span class="dash" style="--c:#4a5583">e₁, e₂, e₃ (original basis)</span>
+        <span style="--c:var(--mint)">Ae₁</span><span style="--c:var(--coral)">Ae₂</span><span style="--c:var(--violet)">Ae₃</span>
+        <span style="--c:var(--amber)">span of the columns</span>
+      </div>
+    </section>
+
+    <section class="glass" id="nsin">
+      <div class="rhead"><h2>Null space explorer</h2></div>
+      <p class="hint">Uses matrix A from the <b>Row reduction</b> tab — edit it there to change the null space here.</p>
+      <div id="nsbody"></div>
+    </section>
+
+    <section class="glass" id="nsviz">
+      <h3 class="eh">Null space geometry</h3>
+      <div class="c3wrap" id="nscwrap"><canvas id="c3n" aria-label="Null space geometry"></canvas><div class="c3load" id="c3nload">Loading 3D engine…</div></div>
+      <p class="hint" id="nstoohigh" hidden>A₄-column matrix has a null space in ℝ⁴, which can't be drawn — the basis vectors above are its exact mathematical representation.</p>
+      <div class="ctrl" id="nscamctrl"><button class="btn" id="nsresetcam">Reset camera</button></div>
+      <div class="legend" id="nslegend">
+        <span style="--c:var(--amber)">null space (Ax = 0)</span><span class="dash" style="--c:#4a5583">coordinate axes</span>
+      </div>
+    </section>
+  </div>
+
+  <div id="p5" hidden>
+    <section class="glass" id="gaussSection" style="max-width:640px;margin:0 auto">
+      <h2>Gaussian elimination</h2>
+      <p class="hint" style="margin-top:-6px">True forward elimination to row-echelon form: every pivot search, row swap and row operation is shown as its own step, and the system is solved (unique / infinite / no solution) by real back-substitution — not Gauss&#8211;Jordan.</p>
+    <div class="sm-panel" id="sm-panel-gauss">
+      <div class="sm-row sm-mat-sizes">
+        <label>Equations (rows) <input type="number" id="sm4-rows" min="1" max="6" value="3"></label>
+        <label>Variables (cols) <input type="number" id="sm4-cols" min="1" max="6" value="3"></label>
+        <button class="chip" id="sm4-build" type="button">Build grid</button>
+        <button class="chip" id="sm4-example" type="button">Load example</button>
+      </div>
+      <div class="sm-row">
+        <label>Variable names (optional) <input type="text" id="sm4-varnames" placeholder="x, y, z" style="width:150px"></label>
+      </div>
+      <div class="sm-mat-gridwrap"><table class="sm-mat-grid" id="sm4-grid"></table></div>
+      <div class="sm-row">
+        <button class="btn" id="sm4-run">Solve</button>
+        <button class="chip" id="sm4-clear" type="button">Clear</button>
+      </div>
+      <p class="hint">Cells accept integers, decimals, negatives, and fractions like <code>-3/4</code>. The last column is the right-hand side of each equation. This performs true Gaussian elimination to row-echelon form (no forced leading 1s, nothing cleared above a pivot) then interprets the result — it does not run Gauss-Jordan.</p>
+      <div class="sm-status" id="sm4-status" role="status" aria-live="polite"></div>
+      <div id="sm4-result"></div>
+      <div id="sm4-output"></div>
+    </div>
+    </section>
+  </div>
+
+  <div id="p6" hidden>
+    <div class="eg-wrap">
+      <section class="glass" id="egIn">
+        <h2>Eigenvalues &amp; eigenvectors</h2>
+        <p class="hint eg-lead">An eigenvector is a non-zero vector whose direction remains unchanged by a matrix transformation. The eigenvalue tells you how much that vector is scaled. Enter a matrix, press Calculate, then watch Av = &lambda;v happen on the grid (2&times;2 matrices).</p>
+        <div class="eg-bar">
+          <div><span class="eg-lbl">Size</span><div class="seg" id="egSizes" role="group" aria-label="Matrix size"><button type="button" data-n="2" aria-pressed="true">2&times;2</button><button type="button" data-n="3" aria-pressed="false">3&times;3</button><button type="button" data-n="4" aria-pressed="false">4&times;4</button></div></div>
+          <div><span class="eg-lbl">Decimals</span><div class="seg" id="egPrec" role="group" aria-label="Decimal precision"><button type="button" data-dp="4" aria-pressed="true">Standard</button><button type="button" data-dp="10" aria-pressed="false">High precision</button></div></div>
+        </div>
+        <div class="mxwrap"><div class="mx eg-mx" id="egMx"></div></div>
+        <div class="chips" id="egPresets" aria-label="Examples"></div>
+        <div class="eg-actions"><button class="btn eg-calc" id="egCalc" type="button">Calculate</button><div class="sm-status" id="egStatus" role="status" aria-live="polite"></div></div>
+        <p class="hint">Type numbers or fractions like 1/3. Arrow keys nudge a value by 0.5 (Shift: 0.1); Enter calculates. Eigenvalues are exact when they are rational or a closed form such as (3 &plusmn; &radic;5)/2; otherwise they are labelled as numerical approximations.</p>
+      </section>
+      <section class="glass" id="egOut" aria-live="polite"></section>
+      <section class="glass" id="egvViz" aria-labelledby="egvTitle">
+        <h2 id="egvTitle">Visualization</h2>
+        <div class="eg-empty" id="egvEmpty" hidden><p id="egvEmptyMsg"></p><button class="btn" id="egvTo2" type="button" hidden>Switch to 2&times;2</button></div>
+        <div id="egvBody">
+          <div class="eg-notice" id="egvNote"></div>
+          <div class="egv-stage"><canvas id="egvCanvas" role="img" aria-label="Grid transformed by the matrix"></canvas></div>
+          <div class="egv-ctrl">
+            <button class="btn" id="egvPlay" type="button">&#9654; Play</button>
+            <button class="btn" id="egvPause" type="button">&#10074;&#10074; Pause</button>
+            <button class="btn" id="egvReset" type="button">&#8634; Reset</button>
+            <label>Morph<input type="range" id="egvT" min="0" max="100" value="100" aria-label="Morph from the identity grid to the transformed grid"></label>
+            <label>View &plusmn;<span id="egvRv">5</span><input type="range" id="egvRange" min="2" max="12" step="0.5" value="5" aria-label="View range"></label>
+          </div>
+          <p class="hint egv-rm" id="egvRm" hidden>Reduced motion is on: Play jumps straight to the result. Drag the Morph slider to step through the transformation.</p>
+          <div class="legend" id="egvLegend"></div>
+          <div id="egvInfo" aria-live="polite"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+  </div>
+  <div id="secCalc" hidden>
+  <div id="calc-shell">
+    <div class="sm-title">
+      <h2>Step-by-step polynomial algebra</h2>
+      <p class="hint">Pick a method below — each one is its own card, worked through one step at a time.</p>
+    </div>
+    <nav class="catbar" aria-label="Method">
+      <div class="tabstrip" id="sm-subtabs" role="group" aria-label="Method">
+        <button aria-pressed="true" data-sm="long">Long division</button>
+        <button aria-pressed="false" data-sm="synthetic">Synthetic division</button>
+        <button aria-pressed="false" data-sm="pfd">Partial fractions</button>
+      </div>
+    </nav>
+
+    <div class="stack calc-stack">
+    <section class="glass sm-panel" id="sm-panel-long">
+      <div class="sm-row sm-eqrow">
+        <div class="sm-mathbox" id="sm-dividend" contenteditable="true" role="textbox" aria-label="Dividend"></div>
+        <span class="sm-divsign" aria-hidden="true">÷</span>
+        <div class="sm-mathbox" id="sm-divisor" contenteditable="true" role="textbox" aria-label="Divisor"></div>
+      </div>
+      <div class="sm-row">
+        <label>Variable <input type="text" id="sm-var" value="x" maxlength="3"></label>
+        <button class="btn" id="sm-run">Solve</button>
+        <button class="chip" id="sm-clear" type="button">Clear</button>
+      </div>
+      <p class="hint">Type <code>^</code> then digits for a power — the exponent gets its own small raised box, same as it will look in the rendered steps below. Works for any divisor.</p>
+      <div class="sm-status" id="sm-status" role="status" aria-live="polite"></div>
+      <div id="sm-result"></div>
+      <div id="sm-output"></div>
+    </section>
+
+    <section class="glass sm-panel" id="sm-panel-synthetic" hidden>
+      <div class="sm-row sm-eqrow">
+        <div class="sm-mathbox" id="sm2-dividend" contenteditable="true" role="textbox" aria-label="Dividend"></div>
+        <span class="sm-divsign" aria-hidden="true">÷</span>
+        <div class="sm-mathbox" id="sm2-divisor" contenteditable="true" role="textbox" aria-label="Divisor"></div>
+      </div>
+      <div class="sm-row">
+        <label>Variable <input type="text" id="sm2-var" value="x" maxlength="3"></label>
+        <button class="btn" id="sm2-run">Solve</button>
+        <button class="chip" id="sm2-clear" type="button">Clear</button>
+      </div>
+      <p class="hint">Synthetic division only works for a <strong>monic linear</strong> divisor — something like <code>x - 2</code> or <code>x + 3</code> (leading coefficient 1). For anything else, use Long division.</p>
+      <div class="sm-status" id="sm2-status" role="status" aria-live="polite"></div>
+      <div id="sm2-result"></div>
+      <div id="sm2-table"></div>
+      <div id="sm2-output"></div>
+    </section>
+
+    <section class="glass sm-panel" id="sm-panel-pfd" hidden>
+      <div class="sm-pfd-frac">
+        <div class="sm-pfd-lbl">Numerator</div>
+        <div class="sm-mathbox" id="sm3-num" contenteditable="true" role="textbox" aria-label="Numerator"></div>
+        <hr class="sm-pfd-bar">
+        <div class="sm-pfd-lbl">Denominator <em>— already factored</em></div>
+        <div class="sm-mathbox" id="sm3-den" contenteditable="true" role="textbox" aria-label="Denominator, already factored"></div>
+      </div>
+      <p class="sm-pfd-note"><b>Note:</b>&nbsp;the denominator must be entered already factored — e.g. <code>(x-2)(x+1)^2(x^2+1)</code>, not the expanded form. This solver decomposes; it does not factor for you.</p>
+      <div class="sm-row">
+        <label>Variable <input type="text" id="sm3-var" value="x" maxlength="3"></label>
+        <button class="btn" id="sm3-run">Solve</button>
+        <button class="chip" id="sm3-clear" type="button">Clear</button>
+      </div>
+      <div class="sm-status" id="sm3-status" role="status" aria-live="polite"></div>
+      <div id="sm3-result"></div>
+      <div id="sm3-output"></div>
+    </section>
+    </div>
+  </div>
+  </div>
+  <div id="secCalculus" hidden>
+  <div id="calculus-shell">
+    <nav class="catbar" id="cl-tabnav" aria-label="Calculus topic">
+      <div class="tabstrip" id="cl-tabs" role="group" aria-label="Calculus topic">
+        <button type="button" aria-pressed="true" data-cl="home">Overview</button><button type="button" aria-pressed="false" data-cl="limits">Limits</button><button type="button" aria-pressed="false" data-cl="diff">Differentiation</button><button type="button" aria-pressed="false" data-cl="int">Indefinite Integral</button><button type="button" aria-pressed="false" data-cl="defint">Definite Integral</button><button type="button" aria-pressed="false" data-cl="guides">Methods &amp; Guides</button>
+      </div>
+    </nav>
+    <section class="cl-panel" id="cl-home" aria-labelledby="cl-home-title">
+      <div class="cl-phead"><div><h2 class="cl-h" id="cl-home-title">Calculus, worked step by step</h2><p class="cl-lede">Type a function and see the answer <em>and</em> the reasoning: which rule applies, what each piece becomes, and how the pieces combine. The computation is done by the Nerdamer symbolic library; VectorLab explains it.</p></div></div>
+      <div class="cl-cards">
+        <button class="cl-tile" type="button" data-cl-go="limits"><span class="cl-ic" data-tex="\lim">lim</span><b>Limits</b><span class="cl-td">Polynomial, rational, trig, exponential and logarithmic limits, including one-sided limits and limits at infinity.</span></button>
+        <button class="cl-tile" type="button" data-cl-go="diff"><span class="cl-ic" data-tex="\tfrac{d}{dx}">d/dx</span><b>Differentiation</b><span class="cl-td">Power, product, quotient and chain rules, with higher derivatives and a plot of f and its derivative.</span></button>
+        <button class="cl-tile" type="button" data-cl-go="int"><span class="cl-ic" data-tex="\int">∫</span><b>Indefinite Integral</b><span class="cl-td">Powers, trig, exponential and logarithmic functions, parts and substitution, with the rule named at each step.</span></button>
+        <button class="cl-tile" type="button" data-cl-go="defint"><span class="cl-ic" data-tex="\int_a^b">∫ₐᵇ</span><b>Definite Integral</b><span class="cl-td">Integrate between two bounds: the antiderivative, the substitution of both limits, and the exact and decimal answer.</span></button>
+      </div>
+      <div class="cl-guidebanner"><div><b>New to a method?</b><span>Short guides explain when and why each limit, derivative and integral technique is used, with a small example.</span></div><button class="btn" type="button" data-cl-go="guides">Open Methods &amp; Guides</button></div>
+      <p class="cl-foot">Series and more are planned for later.</p>
+    </section>
+    <section class="cl-panel" id="cl-limits" hidden aria-labelledby="cl-l-title">
+      <div class="cl-phead">
+        <div><h2 class="cl-h" id="cl-l-title">Limits</h2><p class="cl-lede">Find the value f(x) approaches as x gets close to a point or grows without bound. Check from both sides, or from one side only.</p></div>
+        <a class="gpill" href="/guides/calculus-limits.html"><i>i</i>Method guide</a>
+      </div>
+      <div class="cl-grid">
+        <div class="glass cl-inputcard">
+          <form class="cl-form" id="cl-l-form" novalidate>
+            <div class="cl-field"><label class="cl-flabel" for="cl-l-f">Function</label><div class="cl-inwrap"><span class="cl-pre" data-tex="f(x)=">f(x)=</span><input class="cl-in" id="cl-l-f" type="text" value="sin(x)/x" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Function of x"></div></div>
+            <div class="cl-field"><label class="cl-flabel" for="cl-l-a">Approach value <small>use <code>inf</code> or <code>-inf</code> for infinity</small></label><div class="cl-inwrap"><span class="cl-pre" data-tex="x\to">x →</span><input class="cl-in" id="cl-l-a" type="text" value="0" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Approach value"></div></div>
+            <div class="cl-field"><span class="cl-flabel" id="cl-l-dirlbl">Direction</span><div class="seg cl-seg" id="cl-l-dir" role="group" aria-labelledby="cl-l-dirlbl"><button type="button" data-v="both" aria-pressed="true">Both sides</button><button type="button" data-v="left" aria-pressed="false">From the left</button><button type="button" data-v="right" aria-pressed="false">From the right</button></div></div>
+            <div class="cl-prev" id="cl-l-prev" aria-live="polite"><b>Reads as</b><span class="cl-pv" id="cl-l-pv"><span class="cl-pm">Type above and it appears here as math.</span></span></div>
+            <button class="btn cl-go" id="cl-l-run" type="submit">Find the limit</button>
+          </form>
+          <div class="cl-ex"><p class="cl-exl">Try an example</p><div class="cl-chips" id="cl-l-ex" role="group" aria-label="Examples"></div></div>
+          <details class="cl-tips"><summary>Input tips</summary><ul><li>Powers: <code>x^2</code>. Products: <code>3x</code> or <code>3*x</code>.</li><li>Functions: <code>sin cos tan sec ln log exp sqrt abs</code>; constants <code>pi</code> and <code>e</code>.</li><li>Infinity: <code>inf</code> or <code>-inf</code>. Left and right limits are only used for finite points.</li></ul></details>
+        </div>
+        <div class="cl-out" id="cl-l-out">
+          <div class="cl-empty" id="cl-l-empty"><span class="cl-emic" aria-hidden="true">lim</span><b>Find a limit</b><p>Enter a function and the value x approaches, or choose an example. You will get the answer, the reasoning, and a graph around that point.</p></div>
+          <div class="cl-loading" id="cl-l-loading" role="status" hidden><div class="cl-loadrow"><span class="cl-spin" aria-hidden="true"></span><span id="cl-l-loadmsg">Calculating…</span></div><div class="cl-skel w1"></div><div class="cl-skel w2"></div><div class="cl-skel w3"></div></div>
+          <div class="cl-error" id="cl-l-error" role="alert" hidden><span class="cl-erric" aria-hidden="true">!</span><div><b>That didn’t work</b><p id="cl-l-errmsg"></p><small>Check brackets and operators, then try again, or pick one of the examples.</small></div></div>
+          <div class="cl-result" id="cl-l-result" hidden>
+            <div class="cl-answer"><p class="cl-alabel" id="cl-l-alabel">Answer</p><div class="cl-amath" id="cl-l-answer"></div><p class="cl-ahint" id="cl-l-ahint" hidden></p></div>
+            <div class="cl-card"><h3 class="cl-sec">Step-by-step solution <span id="cl-l-rule"></span></h3><div id="cl-l-steps"></div></div>
+            <div class="cl-card cl-graphcard" id="cl-l-gwrap" hidden><h3 class="cl-sec">Graph</h3><div class="cl-graph" id="cl-l-graph"></div><div class="legend" id="cl-l-legend"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cl-panel" id="cl-diff" hidden aria-labelledby="cl-d-title">
+      <div class="cl-phead">
+        <div><h2 class="cl-h" id="cl-d-title">Differentiation</h2><p class="cl-lede">Differentiate a function up to four times. The rule is named, each piece is worked out, and f and its derivative are plotted together.</p></div>
+        <a class="gpill" href="/guides/calculus-differentiation.html"><i>i</i>Method guide</a>
+      </div>
+      <div class="cl-grid">
+        <div class="glass cl-inputcard">
+          <form class="cl-form" id="cl-d-form" novalidate>
+            <div class="cl-field"><label class="cl-flabel" for="cl-d-f">Function</label><div class="cl-inwrap"><span class="cl-pre" data-tex="f(x)=">f(x)=</span><input class="cl-in" id="cl-d-f" type="text" value="sin(x^2)" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Function of x"></div></div>
+            <div class="cl-field"><span class="cl-flabel" id="cl-d-nlbl">Derivative order</span><div class="seg cl-seg" id="cl-d-n" role="group" aria-labelledby="cl-d-nlbl"><button type="button" data-v="1" aria-pressed="true">1st</button><button type="button" data-v="2" aria-pressed="false">2nd</button><button type="button" data-v="3" aria-pressed="false">3rd</button><button type="button" data-v="4" aria-pressed="false">4th</button></div></div>
+            <div class="cl-prev" id="cl-d-prev" aria-live="polite"><b>Reads as</b><span class="cl-pv" id="cl-d-pv"><span class="cl-pm">Type above and it appears here as math.</span></span></div>
+            <button class="btn cl-go" id="cl-d-run" type="submit">Differentiate</button>
+          </form>
+          <div class="cl-ex"><p class="cl-exl">Try an example</p><div class="cl-chips" id="cl-d-ex" role="group" aria-label="Examples"></div></div>
+          <details class="cl-tips"><summary>Input tips</summary><ul><li>Powers: <code>x^2</code>. Products: <code>3x</code> or <code>3*x</code>.</li><li>Functions: <code>sin cos tan sec ln log exp sqrt abs</code>; constants <code>pi</code> and <code>e</code>.</li></ul></details>
+        </div>
+        <div class="cl-out" id="cl-d-out">
+          <div class="cl-empty" id="cl-d-empty"><span class="cl-emic" aria-hidden="true">d/dx</span><b>Find a derivative</b><p>Enter a function of x and choose the order, or pick an example to see the working.</p></div>
+          <div class="cl-loading" id="cl-d-loading" role="status" hidden><div class="cl-loadrow"><span class="cl-spin" aria-hidden="true"></span><span id="cl-d-loadmsg">Calculating…</span></div><div class="cl-skel w1"></div><div class="cl-skel w2"></div><div class="cl-skel w3"></div></div>
+          <div class="cl-error" id="cl-d-error" role="alert" hidden><span class="cl-erric" aria-hidden="true">!</span><div><b>That didn’t work</b><p id="cl-d-errmsg"></p><small>Check brackets and operators, then try again, or pick one of the examples.</small></div></div>
+          <div class="cl-result" id="cl-d-result" hidden>
+            <div class="cl-answer"><p class="cl-alabel" id="cl-d-alabel">Answer</p><div class="cl-amath" id="cl-d-answer"></div><p class="cl-ahint" id="cl-d-ahint" hidden></p></div>
+            <div class="cl-card"><h3 class="cl-sec">Step-by-step solution <span id="cl-d-rule"></span></h3><div id="cl-d-steps"></div></div>
+            <div class="cl-card cl-graphcard" id="cl-d-gwrap" hidden><h3 class="cl-sec">Graph</h3><div class="cl-graph" id="cl-d-graph"></div><div class="legend" id="cl-d-legend"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cl-panel" id="cl-int" hidden aria-labelledby="cl-i-title">
+      <div class="cl-phead">
+        <div><h2 class="cl-h" id="cl-i-title">Indefinite Integral</h2><p class="cl-lede">Find an antiderivative F(x) of f(x), with the rule named at each step. The constant C is added for you.</p></div>
+        <a class="gpill" href="/guides/calculus-integration.html"><i>i</i>Method guide</a>
+      </div>
+      <div class="cl-grid">
+        <div class="glass cl-inputcard">
+          <form class="cl-form" id="cl-i-form" novalidate>
+            <div class="cl-field"><label class="cl-flabel" for="cl-i-f">Function to integrate</label><div class="cl-inwrap"><span class="cl-pre" data-tex="\int">∫</span><input class="cl-in" id="cl-i-f" type="text" value="x*e^x" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Function of x to integrate"><span class="cl-pre" data-tex="dx" style="padding:0 13px 0 0">dx</span></div></div>
+            <div class="cl-prev" id="cl-i-prev" aria-live="polite"><b>Reads as</b><span class="cl-pv" id="cl-i-pv"><span class="cl-pm">Type above and it appears here as math.</span></span></div>
+            <button class="btn cl-go" id="cl-i-run" type="submit">Integrate</button>
+          </form>
+          <div class="cl-ex"><p class="cl-exl">Try an example</p><div class="cl-chips" id="cl-i-ex" role="group" aria-label="Examples"></div></div>
+          <details class="cl-tips"><summary>Input tips</summary><ul><li>Powers: <code>x^2</code>. Products: <code>3x</code> or <code>3*x</code>.</li><li>Functions: <code>sin cos tan sec ln log exp sqrt abs</code>; constants <code>pi</code> and <code>e</code>.</li><li>The variable is always <code>x</code>.</li></ul></details>
+        </div>
+        <div class="cl-out" id="cl-i-out">
+          <div class="cl-empty" id="cl-i-empty"><span class="cl-emic" aria-hidden="true">∫</span><b>Find an antiderivative</b><p>Enter a function of x, or pick an example. The answer comes first, followed by the full working.</p></div>
+          <div class="cl-loading" id="cl-i-loading" role="status" hidden><div class="cl-loadrow"><span class="cl-spin" aria-hidden="true"></span><span id="cl-i-loadmsg">Calculating…</span></div><div class="cl-skel w1"></div><div class="cl-skel w2"></div><div class="cl-skel w3"></div></div>
+          <div class="cl-error" id="cl-i-error" role="alert" hidden><span class="cl-erric" aria-hidden="true">!</span><div><b>That didn’t work</b><p id="cl-i-errmsg"></p><small>Check brackets and operators, then try again, or pick one of the examples.</small></div></div>
+          <div class="cl-result" id="cl-i-result" hidden>
+            <div class="cl-answer"><p class="cl-alabel" id="cl-i-alabel">Answer</p><div class="cl-amath" id="cl-i-answer"></div><p class="cl-ahint" id="cl-i-ahint" hidden></p></div>
+            <div class="cl-card"><h3 class="cl-sec">Step-by-step solution <span id="cl-i-rule"></span></h3><div id="cl-i-steps"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cl-panel" id="cl-defint" hidden aria-labelledby="cl-di-title">
+      <div class="cl-phead">
+        <div><h2 class="cl-h" id="cl-di-title">Definite Integral</h2><p class="cl-lede">Evaluate the integral of f(x) between two bounds: the antiderivative, both substitutions, and the exact and decimal answer.</p></div>
+        <a class="gpill" href="/guides/calculus-integration.html"><i>i</i>Method guide</a>
+      </div>
+      <div class="cl-grid">
+        <div class="glass cl-inputcard">
+          <form class="cl-form" id="cl-di-form" novalidate>
+            <div class="cl-field"><label class="cl-flabel" for="cl-di-f">Function to integrate</label><div class="cl-inwrap"><span class="cl-pre" data-tex="f(x)=">f(x)=</span><input class="cl-in" id="cl-di-f" type="text" value="x^2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Function of x to integrate"></div></div>
+            <div class="cl-pair"><div class="cl-field"><label class="cl-flabel" for="cl-di-a">Lower bound</label><div class="cl-inwrap"><span class="cl-pre" data-tex="a=">a =</span><input class="cl-in" id="cl-di-a" type="text" value="0" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Lower bound a"></div></div>
+            <div class="cl-field"><label class="cl-flabel" for="cl-di-b">Upper bound</label><div class="cl-inwrap"><span class="cl-pre" data-tex="b=">b =</span><input class="cl-in" id="cl-di-b" type="text" value="3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Upper bound b"></div></div></div>
+            <div class="cl-prev" id="cl-di-prev" aria-live="polite"><b>Reads as</b><span class="cl-pv" id="cl-di-pv"><span class="cl-pm">Type above and it appears here as math.</span></span></div>
+            <button class="btn cl-go" id="cl-di-run" type="submit">Evaluate</button>
+          </form>
+          <div class="cl-ex"><p class="cl-exl">Try an example</p><div class="cl-chips" id="cl-di-ex" role="group" aria-label="Examples"></div></div>
+          <details class="cl-tips"><summary>Input tips</summary><ul><li>Powers: <code>x^2</code>. Products: <code>3x</code> or <code>3*x</code>.</li><li>Functions: <code>sin cos tan sec ln log exp sqrt abs</code>; constants <code>pi</code> and <code>e</code>.</li><li>Bounds can be numbers, fractions or constants: <code>pi</code>, <code>1/2</code>, <code>sqrt(2)</code>.</li><li>Bounds must be finite. The variable is always <code>x</code>.</li></ul></details>
+        </div>
+        <div class="cl-out" id="cl-di-out">
+          <div class="cl-empty" id="cl-di-empty"><span class="cl-emic" aria-hidden="true">∫ₐᵇ</span><b>Evaluate an integral</b><p>Enter a function and two bounds, or pick an example. You will see the antiderivative and both substitutions.</p></div>
+          <div class="cl-loading" id="cl-di-loading" role="status" hidden><div class="cl-loadrow"><span class="cl-spin" aria-hidden="true"></span><span id="cl-di-loadmsg">Calculating…</span></div><div class="cl-skel w1"></div><div class="cl-skel w2"></div><div class="cl-skel w3"></div></div>
+          <div class="cl-error" id="cl-di-error" role="alert" hidden><span class="cl-erric" aria-hidden="true">!</span><div><b>That didn’t work</b><p id="cl-di-errmsg"></p><small>Check brackets and operators, then try again, or pick one of the examples.</small></div></div>
+          <div class="cl-result" id="cl-di-result" hidden>
+            <div class="cl-answer"><p class="cl-alabel" id="cl-di-alabel">Answer</p><div class="cl-amath" id="cl-di-answer"></div><p class="cl-ahint" id="cl-di-ahint" hidden></p></div>
+            <div class="cl-card"><h3 class="cl-sec">Step-by-step solution <span id="cl-di-rule"></span></h3><div id="cl-di-steps"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cl-panel" id="cl-guides" hidden aria-labelledby="cl-guides-title">
+      <div class="cl-phead"><div><h2 class="cl-h" id="cl-guides-title">Methods &amp; Guides</h2><p class="cl-lede">Concise, beginner-friendly notes on when and why each method is used. Open a guide to read it, or try the method on an example in the calculator.</p></div></div>
+      <div id="cl-guides-body"></div>
+    </section>
+  </div>
+  </div>
+</div>
+
+<section class="wrap" style="padding-top:0"><div class="glass" style="line-height:1.75"><h2 style="margin:0 0 8px;font-size:20px">About VectorLab</h2>
+<p style="color:var(--dim);margin:0 0 8px">VectorLab is a free, browser-based tool for learning linear algebra, polynomials and calculus. It shows the working, not just the answer: every row operation, every pivot, every line of a long division, and the rule behind every limit, derivative and integral.</p>
+<p style="color:var(--dim);margin:0">New to a method? Use the <b style="color:var(--ink)">Method guide</b> button above the tools, or browse all the <a href="/guides/" style="color:var(--mint)">written guides</a> with worked examples. <a href="/about.html" style="color:var(--mint)">Read more about the site</a>.</p></div></section>
+<footer class="sitefoot">
+  <div class="wrap footwrap">
+    <div class="footcol">
+      <div class="brand"><svg width="26" height="26" viewBox="0 0 34 34" aria-hidden="true"><path d="M5 29V5M5 29h24" stroke="#4a5583" stroke-width="1.5" fill="none"/><path d="M5 29L26 29" stroke="#5cf2b0" stroke-width="2.4"/><path d="M5 29L11 8" stroke="#ff6b6b" stroke-width="2.4"/><path d="M5 29L26 29L32 8L11 8Z" fill="rgba(139,108,255,.25)" stroke="#8b6cff" stroke-width="1"/></svg>
+        <div><b>VectorLab</b><p>Interactive Linear Algebra, Polynomials &amp; Calculus</p></div>
+      </div>
+    </div>
+    <div class="footcol">
+      <h4>Legal</h4>
+      <a href="/privacy.html" class="legal-link" data-legal="privacy">Privacy Policy</a>
+      <a href="/cookies.html" class="legal-link" data-legal="cookies">Cookie Policy</a>
+      <a href="/terms.html" class="legal-link" data-legal="terms">Terms of Use</a>
+      <a href="/contact.html" class="legal-link">Contact</a>
+      <a href="/about.html" class="legal-link">About</a>
+    </div>
+    <div class="footcol">
+      <h4>Guides</h4>
+      <a href="/guides/matrix-rank.html" class="legal-link">Matrix rank</a>
+      <a href="/guides/vectors-span.html" class="legal-link">Vectors &amp; span</a>
+      <a href="/guides/row-reduction.html" class="legal-link">Row reduction</a>
+      <a href="/guides/null-space-3d.html" class="legal-link">Null space &amp; 3D</a>
+      <a href="/guides/gaussian-elimination.html" class="legal-link">Gaussian elimination</a>
+      <a href="/guides/long-division.html" class="legal-link">Long division</a>
+      <a href="/guides/synthetic-division.html" class="legal-link">Synthetic division</a>
+      <a href="/guides/partial-fractions.html" class="legal-link">Partial fractions</a>
+      <a href="/guides/calculus-limits.html" class="legal-link">Calculus: Limits</a>
+      <a href="/guides/calculus-differentiation.html" class="legal-link">Calculus: Differentiation</a>
+      <a href="/guides/calculus-integration.html" class="legal-link">Calculus: Integration</a>
+    </div>
+    <div class="footcol">
+      <h4>Contact</h4>
+      <p>© 2026 VectorLab. All rights reserved.</p>
+      <p><a href="mailto:vectorlab.co.in@gmail.com" class="legal-link">vectorlab.co.in@gmail.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="legaloverlay" id="legalOverlay" hidden>
+  <div class="legalcard glass">
+    <button class="btn alt legalclose" id="legalClose">← Back to VectorLab</button>
+    <div id="legalContent"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>window.THREE||document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"><\/script>');</script>
+<!-- ================= Algebra engine (pure math, no DOM/canvas deps) ================= -->
+<script src="js/algebra/stepmath-engine.js"></script>
+<!-- ================= Algebra UI (StepMath demo panels) ================= -->
+<script src="js/algebra/stepmath-ui.js"></script>
+<!-- ================= Core utilities & shared state ================= -->
+<script src="js/core/utils.js"></script>
+<!-- ================= Linear algebra ================= -->
+<script src="js/linear-algebra/matrix-core.js"></script>
+<script src="js/linear-algebra/linear-combination.js"></script>
+<script src="js/linear-algebra/vector-explorer.js"></script>
+<script src="js/linear-algebra/row-reduction.js"></script>
+<!-- ================= Eigenvalues & eigenvectors (engine, calculator, visualizer) ================= -->
+<script src="js/linear-algebra/eigen-core.js"></script>
+<script src="js/linear-algebra/eigen-calculator.js"></script>
+<script src="js/visualization/eigen-visualizer.js"></script>
+<!-- ================= Core: tab/category wiring & app bootstrap ================= -->
+<script src="js/core/tabs.js"></script>
+<!-- ================= 3D visualization ================= -->
+<script src="js/visualization/three-helpers.js"></script>
+<script src="js/visualization/vector3d.js"></script>
+<script src="js/visualization/matrix-transform3d.js"></script>
+<script src="js/visualization/null-space.js"></script>
+<!-- ================= Calculus UI (math engine + Nerdamer + function-plot load lazily on first visit) ================= -->
+<script src="js/calculus/calculus-ui.js"></script>
+<!-- ================= Core: legal pages ================= -->
+<script src="js/core/legal.js"></script>
+<script>
+/* Three-way category switch (Vector / Higher Algebra / Calculus). Loads after js/core/tabs.js and
+   replaces its showCategory, so this file alone is enough to enable the Calculus tab. */
+function showCategory(cat){
+  currentCat=cat;
+  const isLA=cat==='linalg',isAlgebra=cat==='calc',isCalculus=cat==='calculus';
+  $('#secLinAlg').hidden=!isLA;
+  $('#secCalc').hidden=!isAlgebra;
+  $('#secCalculus').hidden=!isCalculus;
+  $('#linalgNav').hidden=!isLA;
+  document.querySelectorAll('#cats button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.cat===cat));
+  if(isLA)redraw();
+}
+</script>
+<script>(function(){const T={1:'matrix-rank',2:'vectors-span',3:'row-reduction',4:'null-space-3d',5:'gaussian-elimination'},S={long:'long-division',synthetic:'synthetic-division',pfd:'partial-fractions'};
+function pill(strip,map,attr){if(!strip)return;const a=document.createElement('a');a.className='gpill';a.innerHTML='<i>i</i>Method guide';
+const upd=()=>{const b=strip.querySelector('button[aria-pressed="true"]');const g=b&&map[b.dataset[attr]];a.style.display=g?'':'none';if(g){a.href='/guides/'+g+'.html';a.title='Read the guide for this method'}};
+upd();strip.appendChild(a);strip.addEventListener('click',()=>setTimeout(upd,0))}
+pill(document.getElementById('tabs'),T,'tab');pill(document.getElementById('sm-subtabs'),S,'sm')})();</script>
+
+</body>
+</html>
