@@ -6,8 +6,8 @@ function showTab(t){
   redraw();
 }
 document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>showTab(+b.dataset.tab));
-/* deep link: /#eigenvectors opens the merged Eigenvectors tab (legal pages keep their own hashes) */
-function openFromHash(){if(location.hash==='#eigenvectors'){showCategory('linalg');showTab(6);}}
+/* deep link: /#eigen-vector opens the Eigen Vector tab (/#eigenvectors kept as a legacy alias) (legal pages keep their own hashes) */
+function openFromHash(){if(location.hash==='#eigen-vector'||location.hash==='#eigenvectors'){showCategory('linalg');showTab(6);}}
 window.addEventListener('hashchange',openFromHash);
 let currentCat='linalg';
 function showCategory(cat){

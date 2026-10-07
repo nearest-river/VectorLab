@@ -1,4 +1,4 @@
-/* ============ EIGENVECTORS PAGE: matrix input → Calculate → eigenvalues & eigenvectors (tab 6) ============
+/* ============ EIGEN VECTOR PAGE: matrix input → Calculate → eigenvalues & eigenvectors (tab 6) ============
    UI only: all math lives in eigen-core.js. The result of every calculation is published once through
    window.EigenShared, which the 2×2 visualization (js/visualization/eigen-visualizer.js) subscribes to, so the
    input, the written solution and the visualization always describe the same matrix. Reuses $, neg, parseVal, parseQ, mkQ, EXACT, SUP from the

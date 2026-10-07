@@ -1,4 +1,4 @@
-/* ============ EIGENVECTORS — 2×2 VISUALIZATION (part of tab 6) ============
+/* ============ EIGEN VECTOR — 2×2 VISUALIZATION (part of tab 6) ============
    No calculation of its own: it subscribes to window.EigenShared (published by eigen-calculator.js after every
    Calculate) and draws the exact same Eigen.analyze() result. Reuses the shared canvas helpers from
    linear-combination.js (fit, base, tgrid, square, arrow, infLine, badge, V, P) and the formatters exported

@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <title>VectorLab — Linear Algebra, Polynomials &amp; Calculus with Step-by-Step Guides</title>
-<meta name="description" content="Free interactive math tool with step-by-step solutions and written guides: matrix rank, row reduction, Gaussian elimination, null space, eigenvalues and eigenvectors, long division, partial fractions, limits, derivatives and integrals.">
+<meta name="description" content="Free interactive math tool with step-by-step solutions and written guides: matrix rank, row reduction, Gaussian elimination, null space, Eigen Vector (eigenvalues, eigenvectors, diagonalization), long division, partial fractions, limits, derivatives and integrals.">
 <link rel="canonical" href="https://vectorlab.co.in/">
-<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#060913"><meta property="og:site_name" content="VectorLab"><meta property="og:type" content="website"><meta property="og:title" content="VectorLab — Linear Algebra, Polynomials &amp; Calculus with Step-by-Step Guides"><meta property="og:description" content="Free interactive math tool with step-by-step solutions and written guides: matrix rank, row reduction, Gaussian elimination, null space, eigenvalues and eigenvectors, long division, partial fractions, limits, derivatives and integrals."><meta property="og:url" content="https://vectorlab.co.in/"><meta property="og:image" content="https://vectorlab.co.in/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="VectorLab logo"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="VectorLab — Linear Algebra, Polynomials &amp; Calculus with Step-by-Step Guides"><meta name="twitter:description" content="Free interactive math tool with step-by-step solutions and written guides: matrix rank, row reduction, Gaussian elimination, null space, eigenvalues and eigenvectors, long division, partial fractions, limits, derivatives and integrals."><meta name="twitter:image" content="https://vectorlab.co.in/og-image.png">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#060913"><meta property="og:site_name" content="VectorLab"><meta property="og:type" content="website"><meta property="og:title" content="VectorLab — Linear Algebra, Polynomials &amp; Calculus with Step-by-Step Guides"><meta property="og:description" content="Free interactive math tool with step-by-step solutions and written guides: matrix rank, row reduction, Gaussian elimination, null space, Eigen Vector (eigenvalues, eigenvectors, diagonalization), long division, partial fractions, limits, derivatives and integrals."><meta property="og:url" content="https://vectorlab.co.in/"><meta property="og:image" content="https://vectorlab.co.in/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="VectorLab logo"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="VectorLab — Linear Algebra, Polynomials &amp; Calculus with Step-by-Step Guides"><meta name="twitter:description" content="Free interactive math tool with step-by-step solutions and written guides: matrix rank, row reduction, Gaussian elimination, null space, Eigen Vector (eigenvalues, eigenvectors, diagonalization), long division, partial fractions, limits, derivatives and integrals."><meta name="twitter:image" content="https://vectorlab.co.in/og-image.png">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -96,7 +96,7 @@
   </header>
 
   <nav class="catbar" id="linalgNav" aria-label="Section">
-    <div class="tabstrip" id="tabs" role="group" aria-label="Section"><button aria-pressed="true" data-tab="1">Matrix rank</button><button aria-pressed="false" data-tab="2">Vector explorer</button><button aria-pressed="false" data-tab="3">Row reduction</button><button aria-pressed="false" data-tab="4">3D &amp; null space</button><button aria-pressed="false" data-tab="5">Gaussian elimination</button><button aria-pressed="false" data-tab="6">Eigenvectors</button></div>
+    <div class="tabstrip" id="tabs" role="group" aria-label="Section"><button aria-pressed="true" data-tab="1">Matrix rank</button><button aria-pressed="false" data-tab="2">Vector explorer</button><button aria-pressed="false" data-tab="3">Row reduction</button><button aria-pressed="false" data-tab="4">3D &amp; null space</button><button aria-pressed="false" data-tab="5">Gaussian elimination</button><button aria-pressed="false" data-tab="6">Eigen Vector</button></div>
   </nav>
 
   <div id="secLinAlg">
@@ -336,7 +336,8 @@
   <div id="p6" hidden>
     <div class="eg-wrap">
       <section class="glass" id="egIn">
-        <h2>Eigenvalues &amp; eigenvectors</h2>
+        <nav class="eg-crumbs" aria-label="Breadcrumb"><a href="/">VectorLab</a><span aria-hidden="true">›</span><span>Vector</span><span aria-hidden="true">›</span><span aria-current="page">Eigen Vector</span></nav>
+        <h2>Eigen Vector</h2>
         <p class="hint eg-lead">An eigenvector is a non-zero vector whose direction remains unchanged by a matrix transformation. The eigenvalue tells you how much that vector is scaled. Enter a matrix, press Calculate, then watch Av = &lambda;v happen on the grid (2&times;2 matrices).</p>
         <div class="eg-bar">
           <div><span class="eg-lbl">Size</span><div class="seg" id="egSizes" role="group" aria-label="Matrix size"><button type="button" data-n="2" aria-pressed="true">2&times;2</button><button type="button" data-n="3" aria-pressed="false">3&times;3</button><button type="button" data-n="4" aria-pressed="false">4&times;4</button></div></div>
@@ -346,6 +347,7 @@
         <div class="chips" id="egPresets" aria-label="Examples"></div>
         <div class="eg-actions"><button class="btn eg-calc" id="egCalc" type="button">Calculate</button><div class="sm-status" id="egStatus" role="status" aria-live="polite"></div></div>
         <p class="hint">Type numbers or fractions like 1/3. Arrow keys nudge a value by 0.5 (Shift: 0.1); Enter calculates. Eigenvalues are exact when they are rational or a closed form such as (3 &plusmn; &radic;5)/2; otherwise they are labelled as numerical approximations.</p>
+        <nav class="eg-guides" aria-label="Eigen Vector guides"><b>Eigen Vector guides</b><a href="/guides/eigenvalues.html">Eigenvalues</a><a href="/guides/eigenvectors.html">Eigenvectors</a><a href="/guides/matrix-diagonalization.html">Matrix diagonalization</a><a href="/guides/eigenvalues-matrix-transformations.html">Eigenvalues &amp; matrix transformations</a></nav>
       </section>
       <section class="glass" id="egOut" aria-live="polite"></section>
       <section class="glass" id="egvViz" aria-labelledby="egvTitle">
@@ -602,6 +604,10 @@
       <a href="/guides/row-reduction.html" class="legal-link">Row reduction</a>
       <a href="/guides/null-space-3d.html" class="legal-link">Null space &amp; 3D</a>
       <a href="/guides/gaussian-elimination.html" class="legal-link">Gaussian elimination</a>
+      <a href="/guides/eigenvalues.html" class="legal-link">Eigen Vector: Eigenvalues</a>
+      <a href="/guides/eigenvectors.html" class="legal-link">Eigen Vector: Eigenvectors</a>
+      <a href="/guides/matrix-diagonalization.html" class="legal-link">Eigen Vector: Matrix diagonalization</a>
+      <a href="/guides/eigenvalues-matrix-transformations.html" class="legal-link">Eigen Vector: Eigenvalues &amp; matrix transformations</a>
       <a href="/guides/long-division.html" class="legal-link">Long division</a>
       <a href="/guides/synthetic-division.html" class="legal-link">Synthetic division</a>
       <a href="/guides/partial-fractions.html" class="legal-link">Partial fractions</a>
@@ -638,7 +644,7 @@
 <script src="js/linear-algebra/linear-combination.js"></script>
 <script src="js/linear-algebra/vector-explorer.js"></script>
 <script src="js/linear-algebra/row-reduction.js"></script>
-<!-- ================= Eigenvalues & eigenvectors (engine, calculator, visualizer) ================= -->
+<!-- ================= Eigen Vector (engine, calculator, visualizer) ================= -->
 <script src="js/linear-algebra/eigen-core.js"></script>
 <script src="js/linear-algebra/eigen-calculator.js"></script>
 <script src="js/visualization/eigen-visualizer.js"></script>
@@ -667,7 +673,7 @@ function showCategory(cat){
   if(isLA)redraw();
 }
 </script>
-<script>(function(){const T={1:'matrix-rank',2:'vectors-span',3:'row-reduction',4:'null-space-3d',5:'gaussian-elimination'},S={long:'long-division',synthetic:'synthetic-division',pfd:'partial-fractions'};
+<script>(function(){const T={1:'matrix-rank',2:'vectors-span',3:'row-reduction',4:'null-space-3d',5:'gaussian-elimination',6:'eigenvalues'},S={long:'long-division',synthetic:'synthetic-division',pfd:'partial-fractions'};
 function pill(strip,map,attr){if(!strip)return;const a=document.createElement('a');a.className='gpill';a.innerHTML='<i>i</i>Method guide';
 const upd=()=>{const b=strip.querySelector('button[aria-pressed="true"]');const g=b&&map[b.dataset[attr]];a.style.display=g?'':'none';if(g){a.href='/guides/'+g+'.html';a.title='Read the guide for this method'}};
 upd();strip.appendChild(a);strip.addEventListener('click',()=>setTimeout(upd,0))}
