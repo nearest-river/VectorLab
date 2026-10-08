@@ -1,34 +1,226 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Eigenvalues and Matrix Transformations: Geometric Intuition | VectorLab</title>
-<meta name="description" content="See eigenvalues geometrically: stretching, compression, reflection, eigenvector directions, repeated eigenvalues and matrices with no real eigenvectors, linked to the visualizer."><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link rel="canonical" href="https://vectorlab.co.in/guides/eigenvalues-matrix-transformations.html"><link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#060913"><meta property="og:site_name" content="VectorLab"><meta property="og:type" content="article"><meta property="og:title" content="Eigenvalues and Matrix Transformations: Geometric Intuition | VectorLab"><meta property="og:description" content="See eigenvalues geometrically: stretching, compression, reflection, eigenvector directions, repeated eigenvalues and matrices with no real eigenvectors, linked to the visualizer."><meta property="og:url" content="https://vectorlab.co.in/guides/eigenvalues-matrix-transformations.html"><meta property="og:image" content="https://vectorlab.co.in/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="VectorLab logo"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Eigenvalues and Matrix Transformations: Geometric Intuition | VectorLab"><meta name="twitter:description" content="See eigenvalues geometrically: stretching, compression, reflection, eigenvector directions, repeated eigenvalues and matrices with no real eigenvectors, linked to the visualizer."><meta name="twitter:image" content="https://vectorlab.co.in/og-image.png"><link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/guides/guides.css"><link rel="stylesheet" href="/guides/calculus-guides.css"><link rel="stylesheet" href="/guides/eigen-guides.css">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5434375962653833" crossorigin="anonymous"></script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Eigenvalues and Matrix Transformations: Geometric Intuition | VectorLab</title>
+    <meta name="description"
+      content="See eigenvalues geometrically: stretching, compression, reflection, eigenvector directions, repeated eigenvalues and matrices with no real eigenvectors, linked to the visualizer.">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="canonical"
+      href="https://vectorlab.co.in/guides/eigenvalues-matrix-transformations.html">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#060913">
+    <meta property="og:site_name" content="VectorLab">
+    <meta property="og:type" content="article">
+    <meta property="og:title"
+      content="Eigenvalues and Matrix Transformations: Geometric Intuition | VectorLab">
+    <meta property="og:description"
+      content="See eigenvalues geometrically: stretching, compression, reflection, eigenvector directions, repeated eigenvalues and matrices with no real eigenvectors, linked to the visualizer.">
+    <meta property="og:url"
+      content="https://vectorlab.co.in/guides/eigenvalues-matrix-transformations.html">
+    <meta property="og:image" content="https://vectorlab.co.in/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="VectorLab logo">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title"
+      content="Eigenvalues and Matrix Transformations: Geometric Intuition | VectorLab">
+    <meta name="twitter:description"
+      content="See eigenvalues geometrically: stretching, compression, reflection, eigenvector directions, repeated eigenvalues and matrices with no real eigenvectors, linked to the visualizer.">
+    <meta name="twitter:image" content="https://vectorlab.co.in/og-image.png">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="/guides/guides.css">
+    <link rel="stylesheet" href="/guides/calculus-guides.css">
+    <link rel="stylesheet" href="/guides/eigen-guides.css">
+    <script async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5434375962653833"
+      crossorigin="anonymous"></script>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"VectorLab","item":"https://vectorlab.co.in/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://vectorlab.co.in/guides/"},{"@type":"ListItem","position":3,"name":"Eigen Vector","item":"https://vectorlab.co.in/#eigen-vector"},{"@type":"ListItem","position":4,"name":"Eigenvalues & matrix transformations","item":"https://vectorlab.co.in/guides/eigenvalues-matrix-transformations.html"}]}</script>
-</head><body><div class="wrap"><header><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M5 29V5M5 29h24" stroke="#4a5583" stroke-width="1.5" fill="none"/><path d="M5 29L26 29" stroke="#5cf2b0" stroke-width="2.4"/><path d="M5 29L11 8" stroke="#ff6b6b" stroke-width="2.4"/><path d="M5 29L26 29L32 8L11 8Z" fill="rgba(139,108,255,.25)" stroke="#8b6cff" stroke-width="1"/></svg><div><div class="bn">VectorLab</div><p>Visualize vectors, solve algebra &amp; calculus step by step, with guides</p></div></a><a class="tag" href="/">← Back to the tools</a></header>
-<div class="shell"><aside class="side glass"><h4>Guides</h4><a href="/guides/matrix-rank.html">Matrix rank</a><a href="/guides/vectors-span.html">Vectors &amp; span</a><a href="/guides/row-reduction.html">Row reduction</a><a href="/guides/null-space-3d.html">Null space &amp; 3D</a><a href="/guides/gaussian-elimination.html">Gaussian elimination</a><a href="/guides/long-division.html">Long division</a><a href="/guides/synthetic-division.html">Synthetic division</a><a href="/guides/partial-fractions.html">Partial fractions</a><h4>Eigen Vector</h4><a href="/guides/eigenvalues.html">Eigenvalues</a><a href="/guides/eigenvectors.html">Eigenvectors</a><a href="/guides/matrix-diagonalization.html">Matrix diagonalization</a><a href="/guides/eigenvalues-matrix-transformations.html" class=on>Eigenvalues &amp; matrix transformations</a><h4>Calculus</h4><a href="/guides/calculus-limits.html">Limits</a><a href="/guides/calculus-differentiation.html">Differentiation</a><a href="/guides/calculus-integration.html">Integration</a><h4>Site</h4><a href="/about.html">About</a><a href="/contact.html">Contact</a></aside><main class="glass art"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">VectorLab</a><span aria-hidden="true">›</span><a href="/guides/">Guides</a><span aria-hidden="true">›</span><a href="/#eigen-vector">Eigen Vector</a><span aria-hidden="true">›</span><span aria-current="page">Eigenvalues &amp; matrix transformations</span></nav><h1 class="gt">Eigenvalues and Matrix Transformations: The Geometric Picture</h1><p class="gl">A matrix is a transformation of the plane. Its eigenvalues and eigenvectors describe the directions it only stretches, compresses or flips. This guide builds that picture and connects it to the visualizer.</p><ul class="cg-jump" aria-label="On this page"><li><a href="#stretch">Stretching and compression</a></li><li><a href="#reflection">Reflection</a></li><li><a href="#directions">Eigenvector directions</a></li><li><a href="#signs">Positive and negative eigenvalues</a></li><li><a href="#repeated">Repeated eigenvalues</a></li><li><a href="#none">No real eigenvectors</a></li><li><a href="#visualizer">The visualizer</a></li></ul>
-<figure class="eg-fig"><svg viewBox="0 0 340 310" role="img" aria-label="Four transformations with their eigenvector lines: stretch, reflection, shear and rotation" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="0" width="156" height="150" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.09)"/><path d="M10 81.0H150M80.0 26V144" stroke="#4a5583" stroke-width="1"/><line x1="15.2" y1="81.0" x2="144.8" y2="81.0" stroke="#5cf2b0" stroke-width="1.4" stroke-dasharray="4 3"/><line x1="80.0" y1="145.8" x2="80.0" y2="16.2" stroke="#ffc857" stroke-width="1.4" stroke-dasharray="4 3"/><polygon points="80.0,81.0 116.0,81.0 116.0,45.0 80.0,45.0" fill="none" stroke="#8b95b5" stroke-width="1.2" stroke-dasharray="2 3"/><polygon points="80.0,81.0 152.0,81.0 152.0,63.0 80.0,63.0" fill="rgba(139,108,255,.28)" stroke="#8b6cff" stroke-width="1.8"/><text x="80.0" y="16" fill="#e9edf8" font-size="12.5" text-anchor="middle" font-family="STIX Two Text,serif">Stretch / compress</text><text x="80.0" y="142" fill="#8b95b5" font-size="10.5" text-anchor="middle" font-family="STIX Two Text,serif">λ = 2 and λ = ½</text><rect x="172" y="0" width="156" height="150" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.09)"/><path d="M180 81.0H320M250.0 26V144" stroke="#4a5583" stroke-width="1"/><line x1="185.2" y1="145.8" x2="314.8" y2="16.2" stroke="#5cf2b0" stroke-width="1.4" stroke-dasharray="4 3"/><line x1="185.2" y1="16.2" x2="314.8" y2="145.8" stroke="#ffc857" stroke-width="1.4" stroke-dasharray="4 3"/><polygon points="250.0,81.0 304.0,81.0 304.0,59.4" fill="none" stroke="#8b95b5" stroke-width="1.2" stroke-dasharray="2 3"/><polygon points="250.0,81.0 250.0,27.0 271.6,27.0" fill="rgba(139,108,255,.28)" stroke="#8b6cff" stroke-width="1.8"/><text x="250.0" y="16" fill="#e9edf8" font-size="12.5" text-anchor="middle" font-family="STIX Two Text,serif">Reflection</text><text x="250.0" y="142" fill="#8b95b5" font-size="10.5" text-anchor="middle" font-family="STIX Two Text,serif">λ = 1 and λ = −1</text><rect x="2" y="160" width="156" height="150" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.09)"/><path d="M10 241.0H150M80.0 186V304" stroke="#4a5583" stroke-width="1"/><line x1="15.2" y1="241.0" x2="144.8" y2="241.0" stroke="#5cf2b0" stroke-width="1.4" stroke-dasharray="4 3"/><polygon points="80.0,241.0 116.0,241.0 116.0,205.0 80.0,205.0" fill="none" stroke="#8b95b5" stroke-width="1.2" stroke-dasharray="2 3"/><polygon points="80.0,241.0 116.0,241.0 152.0,205.0 116.0,205.0" fill="rgba(139,108,255,.28)" stroke="#8b6cff" stroke-width="1.8"/><text x="80.0" y="176" fill="#e9edf8" font-size="12.5" text-anchor="middle" font-family="STIX Two Text,serif">Shear</text><text x="80.0" y="302" fill="#8b95b5" font-size="10.5" text-anchor="middle" font-family="STIX Two Text,serif">λ = 1 (repeated), one line</text><rect x="172" y="160" width="156" height="150" rx="12" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.09)"/><path d="M180 241.0H320M250.0 186V304" stroke="#4a5583" stroke-width="1"/><polygon points="250.0,241.0 286.0,241.0 286.0,205.0 250.0,205.0" fill="none" stroke="#8b95b5" stroke-width="1.2" stroke-dasharray="2 3"/><polygon points="250.0,241.0 250.0,205.0 214.0,205.0 214.0,241.0" fill="rgba(139,108,255,.28)" stroke="#8b6cff" stroke-width="1.8"/><text x="250.0" y="176" fill="#e9edf8" font-size="12.5" text-anchor="middle" font-family="STIX Two Text,serif">Rotation 90°</text><text x="250.0" y="302" fill="#8b95b5" font-size="10.5" text-anchor="middle" font-family="STIX Two Text,serif">no real eigenvectors</text></svg><figcaption>Dashed square or triangle: the original shape. Purple: its image. Dashed colored lines: eigenvector directions.</figcaption></figure>
-<h2 id="stretch">Stretching and compression</h2>
-<p><span class="tex">A=\begin{bmatrix}2&amp;0\\0&amp;\tfrac12\end{bmatrix}</span> stretches the x-direction by 2 and compresses the y-direction to half. The axes are the eigenvector directions, with eigenvalues <span class="tex">2</span> and <span class="tex">\tfrac12</span>. Rule of thumb: <span class="tex">|\lambda|&gt;1</span> stretches, <span class="tex">0&lt;|\lambda|&lt;1</span> compresses.</p>
-<h2 id="reflection">Reflection</h2>
-<p>Swapping coordinates, <span class="tex">A=\begin{bmatrix}0&amp;1\\1&amp;0\end{bmatrix}</span>, reflects across the line <span class="tex">y=x</span>. Vectors along <span class="tex">y=x</span> do not move (<span class="tex">\lambda=1</span>, eigenvector <span class="tex">(1,1)</span>), and vectors along <span class="tex">y=-x</span> are flipped (<span class="tex">\lambda=-1</span>, eigenvector <span class="tex">(1,-1)</span>).</p>
-<h2 id="directions">Eigenvector directions</h2>
-<p>Eigenvector directions are the lines through the origin that the matrix maps to themselves. If you apply the matrix again and again, other vectors are pulled steadily toward the direction with the largest <span class="tex">|\lambda|</span>, which is why that direction controls long-term behavior. See the <a href="/guides/eigenvectors.html">eigenvectors guide</a> for how to compute them.</p>
-<h2 id="signs">Positive and negative eigenvalues</h2>
-<ul><li><strong><span class="tex">\lambda&gt;0</span>:</strong> the direction keeps its orientation and is scaled by <span class="tex">\lambda</span>.</li>
-<li><strong><span class="tex">\lambda&lt;0</span>:</strong> the vector is flipped through the origin, then scaled by <span class="tex">|\lambda|</span>.</li>
-<li><strong><span class="tex">\lambda=1</span>:</strong> every vector on the line stays put.</li>
-<li><strong><span class="tex">\lambda=0</span>:</strong> the line collapses to the origin, so the matrix is singular.</li></ul>
-<p>Since <span class="tex">\det A=\lambda_1\lambda_2</span>, a negative determinant means the transformation includes a flip.</p>
-<h2 id="repeated">Repeated eigenvalues</h2>
-<ul><li><strong><span class="tex">A=\lambda I</span></strong> (for example <span class="tex">3I</span>): every non-zero vector is an eigenvector. The matrix scales the whole plane uniformly.</li>
-<li><strong>Shear</strong> <span class="tex">\begin{bmatrix}1&amp;1\\0&amp;1\end{bmatrix}</span>: <span class="tex">\lambda=1</span> is repeated, but only the x-axis stays on its line. Every other vector is slid sideways. This is the defective case from the <a href="/guides/matrix-diagonalization.html">diagonalization guide</a>.</li></ul>
-<h2 id="none">Matrices with no real eigenvectors</h2>
-<p>A 90° rotation <span class="tex">\begin{bmatrix}0&amp;-1\\1&amp;0\end{bmatrix}</span> turns every line to a different line, so no real direction survives. Algebraically, <span class="tex">\lambda^2+1=0</span> gives <span class="tex">\lambda=\pm i</span>, which are complex. In general, complex eigenvalues <span class="tex">a\pm bi</span> signal rotation combined with scaling by <span class="tex">\sqrt{a^2+b^2}</span>. Details of the algebra are in the <a href="/guides/eigenvalues.html">eigenvalues guide</a>.</p>
-<h2 id="visualizer">Connection to the interactive visualizer</h2>
-<p>The 2×2 visualization in the <a href="/#eigen-vector">Eigen Vector tool</a> shows exactly these cases on a transformed grid.</p>
-<ol class="cg-steps"><li>Open the Eigen Vector tool and keep the size at 2×2.</li>
-<li>Pick an example: <em>Distinct real</em>, <em>Repeated (diagonalizable)</em>, <em>Repeated (one eigenvector)</em> or <em>Complex (rotation)</em>, or type the stretch and reflection matrices above.</li>
-<li>Press Calculate, then Play. Dashed arrows are eigenvectors <span class="tex">\mathbf v</span> and the moving arrow is <span class="tex">A\mathbf v</span>; it stays on the same line.</li>
-<li>For the rotation example no eigenvector is drawn, because none is real.</li></ol>
-<h2>Related guides</h2><ul class="eg-rel"><li><a href="/guides/eigenvalues.html">Eigenvalues</a></li><li><a href="/guides/eigenvectors.html">Eigenvectors</a></li><li><a href="/guides/matrix-diagonalization.html">Matrix diagonalization</a></li></ul><p class="back"><a class="btn" href="/#eigen-vector">Open the Eigen Vector tool →</a></p></main></div></div><footer class="pf"><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/cookies.html">Cookie Policy</a><a href="/terms.html">Terms of Use</a><p>© 2026 VectorLab. All rights reserved.</p></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script><script src="/guides/calculus-guides.js"></script></body></html>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "VectorLab",
+          "item": "https://vectorlab.co.in/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://vectorlab.co.in/guides/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Eigen Vector",
+          "item": "https://vectorlab.co.in/#eigen-vector"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Eigenvalues & matrix transformations",
+          "item": "https://vectorlab.co.in/guides/eigenvalues-matrix-transformations.html"
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <div class="wrap">
+      <header><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M5 29V5M5 29h24" stroke="#4a5583" stroke-width="1.5" fill="none"/><path d="M5 29L26 29" stroke="#5cf2b0" stroke-width="2.4"/><path d="M5 29L11 8" stroke="#ff6b6b" stroke-width="2.4"/><path d="M5 29L26 29L32 8L11 8Z" fill="rgba(139,108,255,.25)" stroke="#8b6cff" stroke-width="1"/></svg><div><div class="bn">VectorLab</div><p>Visualize vectors, solve algebra &amp; calculus step by step, with guides</p></div></a><a class="tag" href="/">← Back to the tools</a></header>
+      <div class="shell">
+        <aside
+          class="side glass"><h4>Guides</h4><a href="/guides/matrix-rank.html">Matrix rank</a><a href="/guides/vectors-span.html">Vectors &amp; span</a><a href="/guides/row-reduction.html">Row reduction</a><a href="/guides/null-space-3d.html">Null space &amp; 3D</a><a href="/guides/gaussian-elimination.html">Gaussian elimination</a><a href="/guides/long-division.html">Long division</a><a href="/guides/synthetic-division.html">Synthetic division</a><a href="/guides/partial-fractions.html">Partial fractions</a><h4>Eigen Vector</h4><a href="/guides/eigenvalues.html">Eigenvalues</a><a href="/guides/eigenvectors.html">Eigenvectors</a><a href="/guides/matrix-diagonalization.html">Matrix diagonalization</a><a href="/guides/eigenvalues-matrix-transformations.html" class=on>Eigenvalues &amp; matrix transformations</a><h4>Calculus</h4><a href="/guides/calculus-limits.html">Limits</a><a href="/guides/calculus-differentiation.html">Differentiation</a><a href="/guides/calculus-integration.html">Integration</a><h4>Site</h4><a href="/about.html">About</a><a href="/contact.html">Contact</a></aside>
+        <main class="glass art">
+          <nav class="crumbs"
+            aria-label="Breadcrumb"><a href="/">VectorLab</a><span aria-hidden="true">›</span><a href="/guides/">Guides</a><span aria-hidden="true">›</span><a href="/#eigen-vector">Eigen Vector</a><span aria-hidden="true">›</span><span aria-current="page">Eigenvalues &amp; matrix transformations</span></nav>
+          <h1
+            class="gt">Eigenvalues and Matrix Transformations: The Geometric Picture</h1>
+          <p
+            class="gl">A matrix is a transformation of the plane. Its eigenvalues and eigenvectors describe the directions it only stretches, compresses or flips. This guide builds that picture and connects it to the visualizer.</p>
+          <ul class="cg-jump" aria-label="On this page">
+            <li><a href="#stretch">Stretching and compression</a></li>
+            <li><a href="#reflection">Reflection</a></li>
+            <li><a href="#directions">Eigenvector directions</a></li>
+            <li><a href="#signs">Positive and negative eigenvalues</a></li>
+            <li><a href="#repeated">Repeated eigenvalues</a></li>
+            <li><a href="#none">No real eigenvectors</a></li>
+            <li><a href="#visualizer">The visualizer</a></li>
+          </ul>
+          <figure class="eg-fig">
+            <svg viewBox="0 0 340 310" role="img"
+              aria-label="Four transformations with their eigenvector lines: stretch, reflection, shear and rotation"
+              xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="0" width="156" height="150" rx="12"
+                fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.09)" />
+              <path d="M10 81.0H150M80.0 26V144" stroke="#4a5583"
+                stroke-width="1" />
+              <line x1="15.2" y1="81.0" x2="144.8" y2="81.0" stroke="#5cf2b0"
+                stroke-width="1.4" stroke-dasharray="4 3" />
+              <line x1="80.0" y1="145.8" x2="80.0" y2="16.2" stroke="#ffc857"
+                stroke-width="1.4" stroke-dasharray="4 3" />
+              <polygon points="80.0,81.0 116.0,81.0 116.0,45.0 80.0,45.0"
+                fill="none" stroke="#8b95b5" stroke-width="1.2"
+                stroke-dasharray="2 3" />
+              <polygon points="80.0,81.0 152.0,81.0 152.0,63.0 80.0,63.0"
+                fill="rgba(139,108,255,.28)" stroke="#8b6cff"
+                stroke-width="1.8" />
+              <text x="80.0" y="16" fill="#e9edf8" font-size="12.5"
+                text-anchor="middle"
+                font-family="STIX Two Text,serif">Stretch / compress</text>
+              <text x="80.0" y="142" fill="#8b95b5" font-size="10.5"
+                text-anchor="middle"
+                font-family="STIX Two Text,serif">λ = 2 and λ = ½</text>
+              <rect x="172" y="0" width="156" height="150" rx="12"
+                fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.09)" />
+              <path d="M180 81.0H320M250.0 26V144" stroke="#4a5583"
+                stroke-width="1" />
+              <line x1="185.2" y1="145.8" x2="314.8" y2="16.2" stroke="#5cf2b0"
+                stroke-width="1.4" stroke-dasharray="4 3" />
+              <line x1="185.2" y1="16.2" x2="314.8" y2="145.8" stroke="#ffc857"
+                stroke-width="1.4" stroke-dasharray="4 3" />
+              <polygon points="250.0,81.0 304.0,81.0 304.0,59.4" fill="none"
+                stroke="#8b95b5" stroke-width="1.2" stroke-dasharray="2 3" />
+              <polygon points="250.0,81.0 250.0,27.0 271.6,27.0"
+                fill="rgba(139,108,255,.28)" stroke="#8b6cff"
+                stroke-width="1.8" />
+              <text x="250.0" y="16" fill="#e9edf8" font-size="12.5"
+                text-anchor="middle"
+                font-family="STIX Two Text,serif">Reflection</text>
+              <text x="250.0" y="142" fill="#8b95b5" font-size="10.5"
+                text-anchor="middle"
+                font-family="STIX Two Text,serif">λ = 1 and λ = −1</text>
+              <rect x="2" y="160" width="156" height="150" rx="12"
+                fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.09)" />
+              <path d="M10 241.0H150M80.0 186V304" stroke="#4a5583"
+                stroke-width="1" />
+              <line x1="15.2" y1="241.0" x2="144.8" y2="241.0" stroke="#5cf2b0"
+                stroke-width="1.4" stroke-dasharray="4 3" />
+              <polygon points="80.0,241.0 116.0,241.0 116.0,205.0 80.0,205.0"
+                fill="none" stroke="#8b95b5" stroke-width="1.2"
+                stroke-dasharray="2 3" />
+              <polygon points="80.0,241.0 116.0,241.0 152.0,205.0 116.0,205.0"
+                fill="rgba(139,108,255,.28)" stroke="#8b6cff"
+                stroke-width="1.8" />
+              <text x="80.0" y="176" fill="#e9edf8" font-size="12.5"
+                text-anchor="middle"
+                font-family="STIX Two Text,serif">Shear</text>
+              <text x="80.0" y="302" fill="#8b95b5" font-size="10.5"
+                text-anchor="middle"
+                font-family="STIX Two Text,serif">λ = 1 (repeated), one line</text>
+              <rect x="172" y="160" width="156" height="150" rx="12"
+                fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.09)" />
+              <path d="M180 241.0H320M250.0 186V304" stroke="#4a5583"
+                stroke-width="1" />
+              <polygon points="250.0,241.0 286.0,241.0 286.0,205.0 250.0,205.0"
+                fill="none" stroke="#8b95b5" stroke-width="1.2"
+                stroke-dasharray="2 3" />
+              <polygon points="250.0,241.0 250.0,205.0 214.0,205.0 214.0,241.0"
+                fill="rgba(139,108,255,.28)" stroke="#8b6cff"
+                stroke-width="1.8" />
+              <text x="250.0" y="176" fill="#e9edf8" font-size="12.5"
+                text-anchor="middle"
+                font-family="STIX Two Text,serif">Rotation 90°</text>
+              <text x="250.0" y="302" fill="#8b95b5" font-size="10.5"
+                text-anchor="middle"
+                font-family="STIX Two Text,serif">no real eigenvectors</text>
+            </svg>
+            <figcaption>Dashed square or triangle: the original shape. Purple: its image. Dashed colored lines: eigenvector directions.</figcaption>
+          </figure>
+          <h2 id="stretch">Stretching and compression</h2>
+          <p><span class="tex">A=\begin{bmatrix}2&amp;0\\0&amp;\tfrac12\end{bmatrix}</span> stretches the x-direction by 2 and compresses the y-direction to half. The axes are the eigenvector directions, with eigenvalues <span class="tex">2</span> and <span class="tex">\tfrac12</span>. Rule of thumb: <span class="tex">|\lambda|&gt;1</span> stretches, <span class="tex">0&lt;|\lambda|&lt;1</span> compresses.</p>
+          <h2 id="reflection">Reflection</h2>
+          <p>Swapping coordinates, <span class="tex">A=\begin{bmatrix}0&amp;1\\1&amp;0\end{bmatrix}</span>, reflects across the line <span class="tex">y=x</span>. Vectors along <span class="tex">y=x</span> do not move (<span class="tex">\lambda=1</span>, eigenvector <span class="tex">(1,1)</span>), and vectors along <span class="tex">y=-x</span> are flipped (<span class="tex">\lambda=-1</span>, eigenvector <span class="tex">(1,-1)</span>).</p>
+          <h2 id="directions">Eigenvector directions</h2>
+          <p>Eigenvector directions are the lines through the origin that the matrix maps to themselves. If you apply the matrix again and again, other vectors are pulled steadily toward the direction with the largest <span class="tex">|\lambda|</span>, which is why that direction controls long-term behavior. See the <a href="/guides/eigenvectors.html">eigenvectors guide</a> for how to compute them.</p>
+          <h2 id="signs">Positive and negative eigenvalues</h2>
+          <ul>
+            <li><strong><span class="tex">\lambda&gt;0</span>:</strong> the direction keeps its orientation and is scaled by <span class="tex">\lambda</span>.</li>
+            <li><strong><span class="tex">\lambda&lt;0</span>:</strong> the vector is flipped through the origin, then scaled by <span class="tex">|\lambda|</span>.</li>
+            <li><strong><span class="tex">\lambda=1</span>:</strong> every vector on the line stays put.</li>
+            <li><strong><span class="tex">\lambda=0</span>:</strong> the line collapses to the origin, so the matrix is singular.</li>
+          </ul>
+          <p>Since <span class="tex">\det A=\lambda_1\lambda_2</span>, a negative determinant means the transformation includes a flip.</p>
+          <h2 id="repeated">Repeated eigenvalues</h2>
+          <ul>
+            <li><strong><span class="tex">A=\lambda I</span></strong> (for example <span class="tex">3I</span>): every non-zero vector is an eigenvector. The matrix scales the whole plane uniformly.</li>
+            <li><strong>Shear</strong> <span class="tex">\begin{bmatrix}1&amp;1\\0&amp;1\end{bmatrix}</span>: <span class="tex">\lambda=1</span> is repeated, but only the x-axis stays on its line. Every other vector is slid sideways. This is the defective case from the <a href="/guides/matrix-diagonalization.html">diagonalization guide</a>.</li>
+          </ul>
+          <h2 id="none">Matrices with no real eigenvectors</h2>
+          <p>A 90° rotation <span class="tex">\begin{bmatrix}0&amp;-1\\1&amp;0\end{bmatrix}</span> turns every line to a different line, so no real direction survives. Algebraically, <span class="tex">\lambda^2+1=0</span> gives <span class="tex">\lambda=\pm i</span>, which are complex. In general, complex eigenvalues <span class="tex">a\pm bi</span> signal rotation combined with scaling by <span class="tex">\sqrt{a^2+b^2}</span>. Details of the algebra are in the <a href="/guides/eigenvalues.html">eigenvalues guide</a>.</p>
+          <h2 id="visualizer">Connection to the interactive visualizer</h2>
+          <p>The 2×2 visualization in the <a href="/#eigen-vector">Eigen Vector tool</a> shows exactly these cases on a transformed grid.</p>
+          <ol class="cg-steps">
+            <li>Open the Eigen Vector tool and keep the size at 2×2.</li>
+            <li>Pick an example: <em>Distinct real</em>, <em>Repeated (diagonalizable)</em>, <em>Repeated (one eigenvector)</em> or <em>Complex (rotation)</em>, or type the stretch and reflection matrices above.</li>
+            <li>Press Calculate, then Play. Dashed arrows are eigenvectors <span class="tex">\mathbf v</span> and the moving arrow is <span class="tex">A\mathbf v</span>; it stays on the same line.</li>
+            <li>For the rotation example no eigenvector is drawn, because none is real.</li>
+          </ol>
+          <h2>Related guides</h2>
+          <ul class="eg-rel">
+            <li><a href="/guides/eigenvalues.html">Eigenvalues</a></li>
+            <li><a href="/guides/eigenvectors.html">Eigenvectors</a></li>
+            <li><a href="/guides/matrix-diagonalization.html">Matrix diagonalization</a></li>
+          </ul>
+          <p
+            class="back"><a class="btn" href="/#eigen-vector">Open the Eigen Vector tool →</a></p>
+        </main>
+      </div>
+    </div>
+    <footer
+      class="pf"><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/cookies.html">Cookie Policy</a><a href="/terms.html">Terms of Use</a><p>© 2026 VectorLab. All rights reserved.</p></footer>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+    <script src="/guides/calculus-guides.js"></script>
+  </body>
+</html>

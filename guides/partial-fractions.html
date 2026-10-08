@@ -1,12 +1,67 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Partial Fractions | VectorLab</title>
-<meta name="description" content="Partial fraction decomposition splits a complicated rational expression into simple fractions that are easy to integrate or invert."><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link rel="canonical" href="https://vectorlab.co.in/guides/partial-fractions.html"><link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#060913"><meta property="og:site_name" content="VectorLab"><meta property="og:type" content="article"><meta property="og:title" content="Partial Fractions | VectorLab"><meta property="og:description" content="Partial fraction decomposition splits a complicated rational expression into simple fractions that are easy to integrate or invert."><meta property="og:url" content="https://vectorlab.co.in/guides/partial-fractions.html"><meta property="og:image" content="https://vectorlab.co.in/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="VectorLab logo"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Partial Fractions | VectorLab"><meta name="twitter:description" content="Partial fraction decomposition splits a complicated rational expression into simple fractions that are easy to integrate or invert."><meta name="twitter:image" content="https://vectorlab.co.in/og-image.png"><link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/guides/guides.css">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5434375962653833" crossorigin="anonymous"></script>
-</head><body><div class="wrap"><header><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M5 29V5M5 29h24" stroke="#4a5583" stroke-width="1.5" fill="none"/><path d="M5 29L26 29" stroke="#5cf2b0" stroke-width="2.4"/><path d="M5 29L11 8" stroke="#ff6b6b" stroke-width="2.4"/><path d="M5 29L26 29L32 8L11 8Z" fill="rgba(139,108,255,.25)" stroke="#8b6cff" stroke-width="1"/></svg><div><h1>VectorLab</h1><p>Visualize vectors, solve algebra &amp; calculus step by step, with guides</p></div></a><a class="tag" href="/">← Back to the tools</a></header>
-<div class="shell"><aside class="side glass"><h4>Guides</h4><a href="/guides/matrix-rank.html">Matrix rank</a><a href="/guides/vectors-span.html">Vectors &amp; span</a><a href="/guides/row-reduction.html">Row reduction</a><a href="/guides/null-space-3d.html">Null space &amp; 3D</a><a href="/guides/gaussian-elimination.html">Gaussian elimination</a><a href="/guides/long-division.html">Long division</a><a href="/guides/synthetic-division.html">Synthetic division</a><a href="/guides/partial-fractions.html" class=on>Partial fractions</a><h4>Eigen Vector</h4><a href="/guides/eigenvalues.html">Eigenvalues</a><a href="/guides/eigenvectors.html">Eigenvectors</a><a href="/guides/matrix-diagonalization.html">Matrix diagonalization</a><a href="/guides/eigenvalues-matrix-transformations.html">Eigenvalues &amp; matrix transformations</a><h4>Calculus</h4><a href="/guides/calculus-limits.html">Limits</a><a href="/guides/calculus-differentiation.html">Differentiation</a><a href="/guides/calculus-integration.html">Integration</a><h4>Site</h4><a href="/about.html">About</a><a href="/contact.html">Contact</a></aside><main class="glass art"><h1 class="gt">Partial Fractions</h1><p class="gl">Partial fraction decomposition splits a complicated rational expression into simple fractions that are easy to integrate or invert.</p>
-<h2>The method</h2><ol><li>Factor the denominator.</li><li>Write one fraction for each factor, with an unknown numerator.</li><li>Multiply through by the denominator and solve for the unknowns.</li></ol>
-<h2>Worked example</h2><p>Decompose (3x + 5) / ((x + 1)(x + 2)). Write A/(x + 1) + B/(x + 2), so 3x + 5 = A(x + 2) + B(x + 1).</p><ul><li>Set x = −1: 2 = A(1), so A = 2.</li><li>Set x = −2: −1 = B(−1), so B = 1.</li></ul>
-<p>The result is <strong>2/(x + 1) + 1/(x + 2)</strong>. Check: (2(x + 2) + (x + 1)) / ((x + 1)(x + 2)) = (3x + 5) / ((x + 1)(x + 2)). ✓</p>
-<h2>Special cases</h2><p>A repeated factor (x + 1)² needs terms A/(x + 1) + B/(x + 1)². An irreducible quadratic needs a linear numerator Bx + C. If the numerator's degree is not lower than the denominator's, divide first.</p>
-<h3>Common mistake</h3><p>Skipping the degree check: decomposition only works on proper fractions.<h2>Why it is useful</h2><p>Decomposition turns hard integrals into easy ones. For 1/(x(x + 1)) write A/x + B/(x + 1), so 1 = A(x + 1) + Bx. Setting x = 0 gives A = 1, and x = −1 gives B = −1. The integral is then ln|x| − ln|x + 1| + C. The same technique inverts Laplace transforms and sums telescoping series.</p><p class="back"><a class="btn" href="/">Open the interactive tools →</a></p></main></div></div><footer class="pf"><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/cookies.html">Cookie Policy</a><a href="/terms.html">Terms of Use</a><p>© 2026 VectorLab. All rights reserved.</p></footer></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Partial Fractions | VectorLab</title>
+    <meta name="description"
+      content="Partial fraction decomposition splits a complicated rational expression into simple fractions that are easy to integrate or invert.">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="canonical"
+      href="https://vectorlab.co.in/guides/partial-fractions.html">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#060913">
+    <meta property="og:site_name" content="VectorLab">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Partial Fractions | VectorLab">
+    <meta property="og:description"
+      content="Partial fraction decomposition splits a complicated rational expression into simple fractions that are easy to integrate or invert.">
+    <meta property="og:url"
+      content="https://vectorlab.co.in/guides/partial-fractions.html">
+    <meta property="og:image" content="https://vectorlab.co.in/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="VectorLab logo">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Partial Fractions | VectorLab">
+    <meta name="twitter:description"
+      content="Partial fraction decomposition splits a complicated rational expression into simple fractions that are easy to integrate or invert.">
+    <meta name="twitter:image" content="https://vectorlab.co.in/og-image.png">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="/guides/guides.css">
+    <script async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5434375962653833"
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <header><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M5 29V5M5 29h24" stroke="#4a5583" stroke-width="1.5" fill="none"/><path d="M5 29L26 29" stroke="#5cf2b0" stroke-width="2.4"/><path d="M5 29L11 8" stroke="#ff6b6b" stroke-width="2.4"/><path d="M5 29L26 29L32 8L11 8Z" fill="rgba(139,108,255,.25)" stroke="#8b6cff" stroke-width="1"/></svg><div><h1>VectorLab</h1><p>Visualize vectors, solve algebra &amp; calculus step by step, with guides</p></div></a><a class="tag" href="/">← Back to the tools</a></header>
+      <div class="shell">
+        <aside
+          class="side glass"><h4>Guides</h4><a href="/guides/matrix-rank.html">Matrix rank</a><a href="/guides/vectors-span.html">Vectors &amp; span</a><a href="/guides/row-reduction.html">Row reduction</a><a href="/guides/null-space-3d.html">Null space &amp; 3D</a><a href="/guides/gaussian-elimination.html">Gaussian elimination</a><a href="/guides/long-division.html">Long division</a><a href="/guides/synthetic-division.html">Synthetic division</a><a href="/guides/partial-fractions.html" class=on>Partial fractions</a><h4>Eigen Vector</h4><a href="/guides/eigenvalues.html">Eigenvalues</a><a href="/guides/eigenvectors.html">Eigenvectors</a><a href="/guides/matrix-diagonalization.html">Matrix diagonalization</a><a href="/guides/eigenvalues-matrix-transformations.html">Eigenvalues &amp; matrix transformations</a><h4>Calculus</h4><a href="/guides/calculus-limits.html">Limits</a><a href="/guides/calculus-differentiation.html">Differentiation</a><a href="/guides/calculus-integration.html">Integration</a><h4>Site</h4><a href="/about.html">About</a><a href="/contact.html">Contact</a></aside>
+        <main class="glass art">
+          <h1 class="gt">Partial Fractions</h1>
+          <p
+            class="gl">Partial fraction decomposition splits a complicated rational expression into simple fractions that are easy to integrate or invert.</p>
+          <h2>The method</h2>
+          <ol>
+            <li>Factor the denominator.</li>
+            <li>Write one fraction for each factor, with an unknown numerator.</li>
+            <li>Multiply through by the denominator and solve for the unknowns.</li>
+          </ol>
+          <h2>Worked example</h2>
+          <p>Decompose (3x + 5) / ((x + 1)(x + 2)). Write A/(x + 1) + B/(x + 2), so 3x + 5 = A(x + 2) + B(x + 1).</p>
+          <ul>
+            <li>Set x = −1: 2 = A(1), so A = 2.</li>
+            <li>Set x = −2: −1 = B(−1), so B = 1.</li>
+          </ul>
+          <p>The result is <strong>2/(x + 1) + 1/(x + 2)</strong>. Check: (2(x + 2) + (x + 1)) / ((x + 1)(x + 2)) = (3x + 5) / ((x + 1)(x + 2)). ✓</p>
+          <h2>Special cases</h2>
+          <p>A repeated factor (x + 1)² needs terms A/(x + 1) + B/(x + 1)². An irreducible quadratic needs a linear numerator Bx + C. If the numerator's degree is not lower than the denominator's, divide first.</p>
+          <h3>Common mistake</h3>
+          <p>Skipping the degree check: decomposition only works on proper fractions.<h2>Why it is useful</h2><p>Decomposition turns hard integrals into easy ones. For 1/(x(x + 1)) write A/x + B/(x + 1), so 1 = A(x + 1) + Bx. Setting x = 0 gives A = 1, and x = −1 gives B = −1. The integral is then ln|x| − ln|x + 1| + C. The same technique inverts Laplace transforms and sums telescoping series.</p><p class="back"><a class="btn" href="/">Open the interactive tools →</a></p></main></div></div><footer class="pf"><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/cookies.html">Cookie Policy</a><a href="/terms.html">Terms of Use</a><p>© 2026 VectorLab. All rights reserved.</p></footer></body></html>

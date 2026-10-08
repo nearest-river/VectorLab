@@ -20,7 +20,8 @@
 
   async function loadWasm() {
     const mod = await import(
-      new URL("libveclab/pkg/libveclab.js", document.baseURI).href);
+      new URL("libveclab/pkg/libveclab.js", document.baseURI).href
+    );
 
     if (typeof mod.default === "function") {
       await mod.default();
@@ -74,9 +75,7 @@
     );
 
   const frame = () =>
-    new Promise((r) =>
-      requestAnimationFrame(() => setTimeout(r, 0)),
-    );
+    new Promise((r) => requestAnimationFrame(() => setTimeout(r, 0)));
 
   const calm = () =>
     window.matchMedia &&
@@ -273,9 +272,7 @@
   }
 
   qa("#cl-tabs button,[data-cl-go]").forEach((b) =>
-    b.addEventListener("click", () =>
-      showCl(b.dataset.cl || b.dataset.clGo),
-    ),
+    b.addEventListener("click", () => showCl(b.dataset.cl || b.dataset.clGo))
   );
 
   q("#cl-tabnav").addEventListener(
@@ -309,14 +306,12 @@
   function view(p, state, msg) {
     ["empty", "loading", "error", "result"].forEach(
       (s) => {
-        q("#cl-" + p + "-" + s).hidden =
-          s !== state;
+        q("#cl-" + p + "-" + s).hidden = s !== state;
       },
     );
 
     if (state === "error") {
-      q("#cl-" + p + "-errmsg").textContent =
-        msg ||
+      q("#cl-" + p + "-errmsg").textContent = msg ||
         "Something went wrong evaluating that expression.";
     }
   }
@@ -398,24 +393,19 @@
       alabel,
     },
   ) {
-    q("#cl-" + p + "-answer").innerHTML =
-      answer;
+    q("#cl-" + p + "-answer").innerHTML = answer;
 
-    q("#cl-" + p + "-alabel").textContent =
-      alabel || "Answer";
+    q("#cl-" + p + "-alabel").textContent = alabel || "Answer";
 
     const h = q("#cl-" + p + "-ahint");
 
     h.hidden = !hint;
     h.textContent = hint || "";
-    h.className =
-      "cl-ahint" + (est ? " est" : "");
+    h.className = "cl-ahint" + (est ? " est" : "");
 
-    q("#cl-" + p + "-rule").innerHTML =
-      ruleBadge(rule);
+    q("#cl-" + p + "-rule").innerHTML = ruleBadge(rule);
 
-    q("#cl-" + p + "-steps").innerHTML =
-      body;
+    q("#cl-" + p + "-steps").innerHTML = body;
 
     view(p, "result");
   }
@@ -427,12 +417,11 @@
 
     for (const f of fns) {
       for (let i = 0; i <= 120; i++) {
-        const y =
-          f.f(
-            d[0] +
-              ((d[1] - d[0]) * i) /
-                120,
-          );
+        const y = f.f(
+          d[0] +
+            ((d[1] - d[0]) * i) /
+              120,
+        );
 
         if (isFinite(y)) {
           v.push(y);
@@ -446,10 +435,8 @@
 
     v.sort((a, b) => a - b);
 
-    let lo =
-        v[Math.floor(v.length * 0.04)],
-      hi =
-        v[Math.ceil(v.length * 0.96) - 1];
+    let lo = v[Math.floor(v.length * 0.04)],
+      hi = v[Math.ceil(v.length * 0.96) - 1];
 
     if (hi - lo < 1e-6) {
       lo -= 1;
@@ -465,8 +452,7 @@
   }
 
   function noGraph(target, msg) {
-    q(target).innerHTML =
-      '<p class="cl-nograph">' +
+    q(target).innerHTML = '<p class="cl-nograph">' +
       esc(
         msg ||
           "No graph is available for this expression.",
@@ -506,8 +492,8 @@
               f.f(
                 domain[0] +
                   ((domain[1] -
-                    domain[0]) *
-                    i) /
+                      domain[0]) *
+                      i) /
                     40,
               ),
             )
@@ -585,11 +571,10 @@
 
     if (!el) return;
 
-    const raw =
-      (
-        q("#cl-" + p + "-f").value ||
-        ""
-      ).trim();
+    const raw = (
+      q("#cl-" + p + "-f").value ||
+      ""
+    ).trim();
 
     if (!raw) {
       el.innerHTML =
@@ -605,17 +590,14 @@
     }
   }
 
-  const T = (s) =>
-    String(s ?? "").trim();
+  const T = (s) => String(s ?? "").trim();
 
   PV.l = () => {
-    const dir =
-      q(
-        "#cl-l-dir [aria-pressed=true]",
-      ).dataset.v;
+    const dir = q(
+      "#cl-l-dir [aria-pressed=true]",
+    ).dataset.v;
 
-    const a =
-      q("#cl-l-a").value.trim();
+    const a = q("#cl-l-a").value.trim();
 
     if (!a) {
       throw 0;
@@ -626,13 +608,7 @@
     return (
       "\\lim_{x\\to " +
       T(a) +
-      (inf
-        ? ""
-        : dir === "left"
-          ? "^{-}"
-          : dir === "right"
-            ? "^{+}"
-            : "") +
+      (inf ? "" : dir === "left" ? "^{-}" : dir === "right" ? "^{+}" : "") +
       "}" +
       T(q("#cl-l-f").value)
     );
@@ -661,11 +637,9 @@
     "\\,dx";
 
   PV.di = () => {
-    const a =
-      q("#cl-di-a").value.trim();
+    const a = q("#cl-di-a").value.trim();
 
-    const b =
-      q("#cl-di-b").value.trim();
+    const b = q("#cl-di-b").value.trim();
 
     if (!a || !b) {
       throw 0;
@@ -759,18 +733,15 @@
       return;
     }
 
-    const expression =
-      q("#cl-l-f").value.trim();
+    const expression = q("#cl-l-f").value.trim();
 
-    const approach =
-      q("#cl-l-a").value.trim();
+    const approach = q("#cl-l-a").value.trim();
 
     if (!expression || !approach) {
       return;
     }
 
-    q("#cl-l-gwrap").hidden =
-      false;
+    q("#cl-l-gwrap").hidden = false;
 
     let f;
 
@@ -792,12 +763,9 @@
       return;
     }
 
-    const inf =
-      /inf/i.test(approach);
+    const inf = /inf/i.test(approach);
 
-    const c = inf
-      ? 0
-      : Number(approach);
+    const c = inf ? 0 : Number(approach);
 
     if (
       !inf &&
@@ -834,16 +802,13 @@
         },
       ],
       d,
-      inf
-        ? []
-        : [
-            {
-              x: c,
-              text:
-                "x = " +
-                c.toFixed(3),
-            },
-          ],
+      inf ? [] : [
+        {
+          x: c,
+          text: "x = " +
+            c.toFixed(3),
+        },
+      ],
     );
 
     legend(
@@ -872,8 +837,7 @@
         );
       }
 
-      const n =
-        +segVal("#cl-d-n");
+      const n = +segVal("#cl-d-n");
 
       wasm.differentiate(
         q("#cl-d-f").value,
@@ -896,15 +860,13 @@
       return;
     }
 
-    const expression =
-      q("#cl-d-f").value.trim();
+    const expression = q("#cl-d-f").value.trim();
 
     if (!expression) {
       return;
     }
 
-    q("#cl-d-gwrap").hidden =
-      false;
+    q("#cl-d-gwrap").hidden = false;
 
     let f;
     let g;
@@ -1217,46 +1179,43 @@
       ),
   ).join("");
 
-  q("#cl-d-ex").innerHTML =
-    DEX.map((e, i) =>
-      chip(
-        e[1],
-        "Example: " + e[0],
-        i,
-      ),
-    ).join("");
+  q("#cl-d-ex").innerHTML = DEX.map((e, i) =>
+    chip(
+      e[1],
+      "Example: " + e[0],
+      i,
+    )
+  ).join("");
 
-  q("#cl-i-ex").innerHTML =
-    IEX.map((e, i) =>
-      chip(
-        "\\int " +
-          e[1] +
-          "\\,dx",
-        "Example: integral of " +
-          e[0],
-        i,
-      ),
-    ).join("");
+  q("#cl-i-ex").innerHTML = IEX.map((e, i) =>
+    chip(
+      "\\int " +
+        e[1] +
+        "\\,dx",
+      "Example: integral of " +
+        e[0],
+      i,
+    )
+  ).join("");
 
-  q("#cl-di-ex").innerHTML =
-    DIEX.map((e, i) =>
-      chip(
-        "\\int_{" +
-          e[4] +
-          "}^{" +
-          e[5] +
-          "}" +
-          e[3] +
-          "\\,dx",
-        "Example: integral of " +
-          e[0] +
-          " from " +
-          e[1] +
-          " to " +
-          e[2],
-        i,
-      ),
-    ).join("");
+  q("#cl-di-ex").innerHTML = DIEX.map((e, i) =>
+    chip(
+      "\\int_{" +
+        e[4] +
+        "}^{" +
+        e[5] +
+        "}" +
+        e[3] +
+        "\\,dx",
+      "Example: integral of " +
+        e[0] +
+        " from " +
+        e[1] +
+        " to " +
+        e[2],
+      i,
+    )
+  ).join("");
 
   /* ---------- wiring ---------- */
 
@@ -1269,12 +1228,9 @@
   }
 
   function pick(e) {
-    const b =
-      e.target.closest("button");
+    const b = e.target.closest("button");
 
-    return b
-      ? +b.dataset.i
-      : -1;
+    return b ? +b.dataset.i : -1;
   }
 
   q("#cl-l-ex").onclick = (e) => {
@@ -1303,8 +1259,7 @@
 
     if (i < 0) return;
 
-    q("#cl-d-f").value =
-      DEX[i][0];
+    q("#cl-d-f").value = DEX[i][0];
 
     schedulePreview("d");
     runDiff();
@@ -1315,8 +1270,7 @@
 
     if (i < 0) return;
 
-    q("#cl-i-f").value =
-      IEX[i][0];
+    q("#cl-i-f").value = IEX[i][0];
 
     schedulePreview("i");
     runInt();
@@ -1363,15 +1317,14 @@
       i.addEventListener(
         "input",
         () => schedulePreview(p),
-      ),
+      )
     );
   });
 
   q("#cl-l-dir").addEventListener(
     "click",
     (e) => {
-      const b =
-        e.target.closest("button");
+      const b = e.target.closest("button");
 
       if (b) {
         setSeg(
@@ -1387,8 +1340,7 @@
   q("#cl-d-n").addEventListener(
     "click",
     (e) => {
-      const b =
-        e.target.closest("button");
+      const b = e.target.closest("button");
 
       if (b) {
         setSeg(
@@ -1676,10 +1628,9 @@
   q("#cl-guides-body").addEventListener(
     "click",
     (e) => {
-      const j =
-        e.target.closest(
-          "button[data-j]",
-        );
+      const j = e.target.closest(
+        "button[data-j]",
+      );
 
       if (j) {
         q(
@@ -1687,30 +1638,25 @@
             j.dataset.j,
         ).scrollIntoView({
           block: "start",
-          behavior: calm()
-            ? "auto"
-            : "smooth",
+          behavior: calm() ? "auto" : "smooth",
         });
 
         return;
       }
 
-      const b =
-        e.target.closest(
-          "button[data-g]",
-        );
+      const b = e.target.closest(
+        "button[data-g]",
+      );
 
       if (!b) {
         return;
       }
 
-      const [gi, i] =
-        b.dataset.g
-          .split("-")
-          .map(Number);
+      const [gi, i] = b.dataset.g
+        .split("-")
+        .map(Number);
 
-      const t =
-        G[gi].items[i][4];
+      const t = G[gi].items[i][4];
 
       showCl(t.tab);
 
@@ -1730,8 +1676,7 @@
       } else if (
         t.tab === "diff"
       ) {
-        q("#cl-d-f").value =
-          t.f;
+        q("#cl-d-f").value = t.f;
 
         setSeg(
           "#cl-d-n",
@@ -1743,8 +1688,7 @@
       } else if (
         t.tab === "int"
       ) {
-        q("#cl-i-f").value =
-          t.f;
+        q("#cl-i-f").value = t.f;
 
         schedulePreview("i");
         runInt();
@@ -1759,19 +1703,16 @@
         runDef();
       }
 
-      const sh =
-        q(
-          "#calculus-shell",
-        ).getBoundingClientRect();
+      const sh = q(
+        "#calculus-shell",
+      ).getBoundingClientRect();
 
       if (sh.top < -20) {
         q(
           "#calculus-shell",
         ).scrollIntoView({
           block: "start",
-          behavior: calm()
-            ? "auto"
-            : "smooth",
+          behavior: calm() ? "auto" : "smooth",
         });
       }
     },
@@ -1812,10 +1753,9 @@
   window.addEventListener(
     "load",
     () => {
-      const h =
-        location.hash.match(
-          /^#calculus(?:\/(\w+))?$/,
-        );
+      const h = location.hash.match(
+        /^#calculus(?:\/(\w+))?$/,
+      );
 
       if (!h) {
         return;
@@ -1823,7 +1763,7 @@
 
       if (
         typeof showCategory ===
-        "function"
+          "function"
       ) {
         showCategory(
           "calculus",
@@ -1838,8 +1778,7 @@
         h[1] || "home",
       );
 
-      const n =
-        q("#calculus-shell");
+      const n = q("#calculus-shell");
 
       if (n) {
         n.scrollIntoView({

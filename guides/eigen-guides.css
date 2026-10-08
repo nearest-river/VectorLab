@@ -1,10 +1,68 @@
 /* Extra styles for the Eigen Vector guides only (loaded after guides.css and calculus-guides.css). */
-.brand .bn{font-family:var(--math);font-weight:600;font-size:30px;margin:0;line-height:1}
-.crumbs{display:flex;flex-wrap:wrap;gap:2px 8px;align-items:center;font-size:12.5px;color:var(--dim);margin:0 0 14px}
-.crumbs a{color:var(--dim);text-decoration:none}.crumbs a:hover{color:var(--mint)}.crumbs [aria-current]{color:var(--ink)}
-.eg-fig{margin:18px auto;max-width:420px;padding:12px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.18)}
-.eg-fig svg{display:block;width:100%;height:auto}
-.eg-fig figcaption{margin-top:8px;font-size:12.5px;line-height:1.5;color:var(--dim);text-align:center}
-.eg-rel{display:flex;flex-wrap:wrap;gap:6px 8px;list-style:none;padding:0}
-.eg-rel a{display:inline-block;font-size:13.5px;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--ink);text-decoration:none}
-.eg-rel a:hover{color:var(--mint);border-color:rgba(92,242,176,.45)}
+.brand .bn {
+  font-family: var(--math);
+  font-weight: 600;
+  font-size: 30px;
+  margin: 0;
+  line-height: 1;
+}
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 8px;
+  align-items: center;
+  font-size: 12.5px;
+  color: var(--dim);
+  margin: 0 0 14px;
+}
+.crumbs a {
+  color: var(--dim);
+  text-decoration: none;
+}
+.crumbs a:hover {
+  color: var(--mint);
+}
+.crumbs [aria-current] {
+  color: var(--ink);
+}
+.eg-fig {
+  margin: 18px auto;
+  max-width: 420px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(0,0,0,.18);
+}
+.eg-fig svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.eg-fig figcaption {
+  margin-top: 8px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--dim);
+  text-align: center;
+}
+.eg-rel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  list-style: none;
+  padding: 0;
+}
+.eg-rel a {
+  display: inline-block;
+  font-size: 13.5px;
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+  color: var(--ink);
+  text-decoration: none;
+}
+.eg-rel a:hover {
+  color: var(--mint);
+  border-color: rgba(92,242,176,.45);
+}
