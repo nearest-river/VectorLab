@@ -1,52 +1,201 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Eigenvalues Explained: Characteristic Equation and 2×2 Example | VectorLab</title>
-<meta name="description" content="Learn what eigenvalues are, how to find them with the characteristic equation det(A − λI) = 0, a worked 2×2 example, repeated eigenvalues and common mistakes."><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link rel="canonical" href="https://vectorlab.co.in/guides/eigenvalues.html"><link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#060913"><meta property="og:site_name" content="VectorLab"><meta property="og:type" content="article"><meta property="og:title" content="Eigenvalues Explained: Characteristic Equation and 2×2 Example | VectorLab"><meta property="og:description" content="Learn what eigenvalues are, how to find them with the characteristic equation det(A − λI) = 0, a worked 2×2 example, repeated eigenvalues and common mistakes."><meta property="og:url" content="https://vectorlab.co.in/guides/eigenvalues.html"><meta property="og:image" content="https://vectorlab.co.in/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="VectorLab logo"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Eigenvalues Explained: Characteristic Equation and 2×2 Example | VectorLab"><meta name="twitter:description" content="Learn what eigenvalues are, how to find them with the characteristic equation det(A − λI) = 0, a worked 2×2 example, repeated eigenvalues and common mistakes."><meta name="twitter:image" content="https://vectorlab.co.in/og-image.png"><link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/guides/guides.css"><link rel="stylesheet" href="/guides/calculus-guides.css"><link rel="stylesheet" href="/guides/eigen-guides.css">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5434375962653833" crossorigin="anonymous"></script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Eigenvalues Explained: Characteristic Equation and 2×2 Example | VectorLab</title>
+    <meta name="description"
+      content="Learn what eigenvalues are, how to find them with the characteristic equation det(A − λI) = 0, a worked 2×2 example, repeated eigenvalues and common mistakes.">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="canonical"
+      href="https://vectorlab.co.in/guides/eigenvalues.html">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#060913">
+    <meta property="og:site_name" content="VectorLab">
+    <meta property="og:type" content="article">
+    <meta property="og:title"
+      content="Eigenvalues Explained: Characteristic Equation and 2×2 Example | VectorLab">
+    <meta property="og:description"
+      content="Learn what eigenvalues are, how to find them with the characteristic equation det(A − λI) = 0, a worked 2×2 example, repeated eigenvalues and common mistakes.">
+    <meta property="og:url"
+      content="https://vectorlab.co.in/guides/eigenvalues.html">
+    <meta property="og:image" content="https://vectorlab.co.in/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="VectorLab logo">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title"
+      content="Eigenvalues Explained: Characteristic Equation and 2×2 Example | VectorLab">
+    <meta name="twitter:description"
+      content="Learn what eigenvalues are, how to find them with the characteristic equation det(A − λI) = 0, a worked 2×2 example, repeated eigenvalues and common mistakes.">
+    <meta name="twitter:image" content="https://vectorlab.co.in/og-image.png">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="/guides/guides.css">
+    <link rel="stylesheet" href="/guides/calculus-guides.css">
+    <link rel="stylesheet" href="/guides/eigen-guides.css">
+    <script async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5434375962653833"
+      crossorigin="anonymous"></script>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"VectorLab","item":"https://vectorlab.co.in/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://vectorlab.co.in/guides/"},{"@type":"ListItem","position":3,"name":"Eigen Vector","item":"https://vectorlab.co.in/#eigen-vector"},{"@type":"ListItem","position":4,"name":"Eigenvalues","item":"https://vectorlab.co.in/guides/eigenvalues.html"}]}</script>
-</head><body><div class="wrap"><header><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M5 29V5M5 29h24" stroke="#4a5583" stroke-width="1.5" fill="none"/><path d="M5 29L26 29" stroke="#5cf2b0" stroke-width="2.4"/><path d="M5 29L11 8" stroke="#ff6b6b" stroke-width="2.4"/><path d="M5 29L26 29L32 8L11 8Z" fill="rgba(139,108,255,.25)" stroke="#8b6cff" stroke-width="1"/></svg><div><div class="bn">VectorLab</div><p>Visualize vectors, solve algebra &amp; calculus step by step, with guides</p></div></a><a class="tag" href="/">← Back to the tools</a></header>
-<div class="shell"><aside class="side glass"><h4>Guides</h4><a href="/guides/matrix-rank.html">Matrix rank</a><a href="/guides/vectors-span.html">Vectors &amp; span</a><a href="/guides/row-reduction.html">Row reduction</a><a href="/guides/null-space-3d.html">Null space &amp; 3D</a><a href="/guides/gaussian-elimination.html">Gaussian elimination</a><a href="/guides/long-division.html">Long division</a><a href="/guides/synthetic-division.html">Synthetic division</a><a href="/guides/partial-fractions.html">Partial fractions</a><h4>Eigen Vector</h4><a href="/guides/eigenvalues.html" class=on>Eigenvalues</a><a href="/guides/eigenvectors.html">Eigenvectors</a><a href="/guides/matrix-diagonalization.html">Matrix diagonalization</a><a href="/guides/eigenvalues-matrix-transformations.html">Eigenvalues &amp; matrix transformations</a><h4>Calculus</h4><a href="/guides/calculus-limits.html">Limits</a><a href="/guides/calculus-differentiation.html">Differentiation</a><a href="/guides/calculus-integration.html">Integration</a><h4>Site</h4><a href="/about.html">About</a><a href="/contact.html">Contact</a></aside><main class="glass art"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">VectorLab</a><span aria-hidden="true">›</span><a href="/guides/">Guides</a><span aria-hidden="true">›</span><a href="/#eigen-vector">Eigen Vector</a><span aria-hidden="true">›</span><span aria-current="page">Eigenvalues</span></nav><h1 class="gt">Eigenvalues: Meaning, Characteristic Equation and a Worked Example</h1><p class="gl">An eigenvalue tells you how much a matrix stretches, shrinks or flips one special direction. Here is what that means, how to find eigenvalues with the characteristic equation, and how to check your answer.</p><ul class="cg-jump" aria-label="On this page"><li><a href="#what">What eigenvalues are</a></li><li><a href="#intuition">Intuition</a></li><li><a href="#characteristic-equation">Characteristic equation</a></li><li><a href="#how-to-calculate">How to calculate</a></li><li><a href="#worked-example">2×2 worked example</a></li><li><a href="#repeated">Repeated eigenvalues</a></li><li><a href="#geometry">Geometric meaning</a></li><li><a href="#mistakes">Common mistakes</a></li></ul>
-<h2 id="what">What eigenvalues are</h2>
-<p>For a square matrix <span class="tex">A</span>, a number <span class="tex">\lambda</span> is an <strong>eigenvalue</strong> if some non-zero vector <span class="tex">\mathbf v</span> satisfies</p>
-<div class="tex tex-d">A\mathbf v=\lambda\mathbf v</div>
-<p>The vector <span class="tex">\mathbf v</span> is an <a href="/guides/eigenvectors.html">eigenvector</a>. In words: multiplying by the whole matrix <span class="tex">A</span> does the same thing to <span class="tex">\mathbf v</span> as multiplying by the single number <span class="tex">\lambda</span>. An <span class="tex">n\times n</span> matrix has at most <span class="tex">n</span> eigenvalues (counted with repeats), and they can be complex numbers.</p>
-<h2 id="intuition">Intuition</h2>
-<p>Most vectors are both stretched and turned by a matrix. A few special directions are only <em>scaled</em>. The eigenvalue is that scale factor: <span class="tex">\lambda=3</span> makes the vector three times longer, <span class="tex">\lambda=0.5</span> halves it, <span class="tex">\lambda=-1</span> flips it around, and <span class="tex">\lambda=0</span> squashes it to the origin.</p>
-<h2 id="characteristic-equation">The characteristic equation</h2>
-<p>Start from <span class="tex">A\mathbf v=\lambda\mathbf v</span> and move everything to one side:</p>
-<div class="tex tex-d">(A-\lambda I)\mathbf v=\mathbf 0</div>
-<p>A non-zero <span class="tex">\mathbf v</span> can only solve this if <span class="tex">A-\lambda I</span> is singular, which means its determinant is zero:</p>
-<div class="tex tex-d">\det(A-\lambda I)=0</div>
-<p>This is the <strong>characteristic equation</strong>. The left side is a polynomial in <span class="tex">\lambda</span> of degree <span class="tex">n</span>, called the characteristic polynomial, and its roots are the eigenvalues. For a 2×2 matrix it simplifies to <span class="tex">\lambda^2-\operatorname{tr}(A)\,\lambda+\det(A)=0</span>.</p>
-<figure class="eg-fig"><svg viewBox="0 0 320 200" role="img" aria-label="Graph of the characteristic polynomial lambda squared minus 7 lambda plus 10 crossing zero at 2 and 5" xmlns="http://www.w3.org/2000/svg"><path d="M14 120H312M40 14V190" stroke="#4a5583" stroke-width="1.2" fill="none"/><polyline points="21.0,10.0 24.8,16.3 28.6,22.5 32.4,28.5 36.2,34.3 40.0,40.0 43.8,45.5 47.6,50.9 51.4,56.1 55.2,61.1 59.0,66.0 62.8,70.7 66.6,75.3 70.4,79.7 74.2,83.9 78.0,88.0 81.8,91.9 85.6,95.7 89.4,99.3 93.2,102.7 97.0,106.0 100.8,109.1 104.6,112.1 108.4,114.9 112.2,117.5 116.0,120.0 119.8,122.3 123.6,124.5 127.4,126.5 131.2,128.3 135.0,130.0 138.8,131.5 142.6,132.9 146.4,134.1 150.2,135.1 154.0,136.0 157.8,136.7 161.6,137.3 165.4,137.7 169.2,137.9 173.0,138.0 176.8,137.9 180.6,137.7 184.4,137.3 188.2,136.7 192.0,136.0 195.8,135.1 199.6,134.1 203.4,132.9 207.2,131.5 211.0,130.0 214.8,128.3 218.6,126.5 222.4,124.5 226.2,122.3 230.0,120.0 233.8,117.5 237.6,114.9 241.4,112.1 245.2,109.1 249.0,106.0 252.8,102.7 256.6,99.3 260.4,95.7 264.2,91.9 268.0,88.0 271.8,83.9 275.6,79.7 279.4,75.3 283.2,70.7 287.0,66.0 290.8,61.1 294.6,56.1 298.4,50.9 302.2,45.5 306.0,40.0 309.8,34.3 313.6,28.5 317.4,22.5 321.2,16.3 325.0,10.0" fill="none" stroke="#8b6cff" stroke-width="2.4"/><circle cx="116" cy="120" r="5" fill="#5cf2b0"/><text x="116" y="108" fill="#5cf2b0" font-size="13" text-anchor="middle" font-family="STIX Two Text,serif">λ = 2</text><circle cx="230" cy="120" r="5" fill="#5cf2b0"/><text x="230" y="108" fill="#5cf2b0" font-size="13" text-anchor="middle" font-family="STIX Two Text,serif">λ = 5</text><text x="173.0" y="154.0" fill="#8b95b5" font-size="11" text-anchor="middle" font-family="STIX Two Text,serif">p(λ) &lt; 0 between the roots</text><text x="300" y="136" fill="#8b95b5" font-size="13" text-anchor="end" font-family="STIX Two Text,serif" font-style="italic">λ</text><text x="48" y="26" fill="#8b6cff" font-size="13" text-anchor="start" font-family="STIX Two Text,serif">p(λ) = λ² − 7λ + 10</text></svg><figcaption>The eigenvalues are where the characteristic polynomial crosses zero (matrix A from the worked example below).</figcaption></figure>
-<h2 id="how-to-calculate">How to calculate eigenvalues</h2>
-<ol class="cg-steps"><li>Form <span class="tex">A-\lambda I</span>: subtract <span class="tex">\lambda</span> from each <em>diagonal</em> entry only.</li>
-<li>Compute <span class="tex">\det(A-\lambda I)</span> to get the characteristic polynomial.</li>
-<li>Set it equal to zero and solve for <span class="tex">\lambda</span>.</li>
-<li>Check: the eigenvalues add up to the trace of <span class="tex">A</span> and multiply to <span class="tex">\det(A)</span>.</li></ol>
-<h2 id="worked-example">Worked example (2×2)</h2>
-<div class="cg-ex"><p><strong>Find the eigenvalues of</strong> <span class="tex">A=\begin{bmatrix}4&amp;1\\2&amp;3\end{bmatrix}</span>.</p>
-<p>Subtract <span class="tex">\lambda</span> on the diagonal and take the determinant:</p>
-<div class="tex tex-d">\det\begin{bmatrix}4-\lambda&amp;1\\2&amp;3-\lambda\end{bmatrix}=(4-\lambda)(3-\lambda)-2=\lambda^2-7\lambda+10</div>
-<p>Factor: <span class="tex">\lambda^2-7\lambda+10=(\lambda-5)(\lambda-2)=0</span>, so <strong><span class="tex">\lambda_1=5</span> and <span class="tex">\lambda_2=2</span></strong>.</p>
-<p>Check: <span class="tex">5+2=7=\operatorname{tr}(A)</span> and <span class="tex">5\cdot2=10=\det(A)</span>. ✓</p></div>
-<p class="cg-try">Try it: enter this matrix in the <a href="/#eigen-vector">Eigen Vector tool</a> and compare the steps. Next, find the matching vectors in the <a href="/guides/eigenvectors.html">eigenvectors guide</a>.</p>
-<h2 id="repeated">Repeated eigenvalues</h2>
-<p>If a root appears more than once, for example <span class="tex">(\lambda-3)^2=0</span>, the eigenvalue is <strong>repeated</strong>. The number of times it appears is its <em>algebraic multiplicity</em>. Repeats can behave very differently:</p>
-<ul><li><span class="tex">\begin{bmatrix}3&amp;0\\0&amp;3\end{bmatrix}</span> has <span class="tex">\lambda=3</span> twice and <strong>two</strong> independent eigenvectors.</li>
-<li><span class="tex">\begin{bmatrix}1&amp;1\\0&amp;1\end{bmatrix}</span> has <span class="tex">\lambda=1</span> twice but only <strong>one</strong> independent eigenvector.</li></ul>
-<p>The number of independent eigenvectors (the <em>geometric multiplicity</em>) is never larger than the algebraic multiplicity. This difference decides whether a matrix can be <a href="/guides/matrix-diagonalization.html">diagonalized</a>.</p>
-<h2 id="geometry">Geometric meaning</h2>
-<p>Each real eigenvalue belongs to a line through the origin that the matrix sends to itself. If <span class="tex">|\lambda|&gt;1</span> the line is stretched, if <span class="tex">0&lt;|\lambda|&lt;1</span> it is compressed, a negative <span class="tex">\lambda</span> also flips it, <span class="tex">\lambda=1</span> leaves it fixed and <span class="tex">\lambda=0</span> collapses it (so <span class="tex">\det A=0</span>). Complex eigenvalues mean there is no such line: the matrix rotates. Also, <span class="tex">\det A</span> is the product of the eigenvalues, the factor by which areas change. See <a href="/guides/eigenvalues-matrix-transformations.html">eigenvalues and matrix transformations</a>.</p>
-<h2 id="mistakes">Common mistakes</h2>
-<ul><li>Subtracting <span class="tex">\lambda</span> from every entry instead of only the diagonal.</li>
-<li>Writing <span class="tex">\det(A)-\lambda</span> instead of <span class="tex">\det(A-\lambda I)</span>.</li>
-<li>Cancelling a factor of <span class="tex">\lambda</span> and losing the root <span class="tex">\lambda=0</span>.</li>
-<li>Skipping the trace and determinant check, which catches most slips.</li>
-<li>Assuming a repeated eigenvalue always gives as many eigenvectors as repeats.</li></ul>
-<h2>FAQ</h2>
-<h3>Can an eigenvalue be zero?</h3><p>Yes. <span class="tex">\lambda=0</span> is an eigenvalue exactly when the matrix is singular, that is, <span class="tex">\det A=0</span>.</p>
-<h3>Can eigenvalues be complex?</h3><p>Yes. A real matrix such as a 90° rotation has the complex eigenvalues <span class="tex">\pm i</span> and no real eigenvectors.</p>
-<h3>How many eigenvalues does a matrix have?</h3><p>An <span class="tex">n\times n</span> matrix has exactly <span class="tex">n</span> eigenvalues when counted with multiplicity and allowing complex values.</p>
-<h2>Related guides</h2><ul class="eg-rel"><li><a href="/guides/eigenvectors.html">Eigenvectors</a></li><li><a href="/guides/matrix-diagonalization.html">Matrix diagonalization</a></li><li><a href="/guides/eigenvalues-matrix-transformations.html">Eigenvalues &amp; matrix transformations</a></li></ul><p class="back"><a class="btn" href="/#eigen-vector">Open the Eigen Vector tool →</a></p></main></div></div><footer class="pf"><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/cookies.html">Cookie Policy</a><a href="/terms.html">Terms of Use</a><p>© 2026 VectorLab. All rights reserved.</p></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script><script src="/guides/calculus-guides.js"></script></body></html>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "VectorLab",
+          "item": "https://vectorlab.co.in/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://vectorlab.co.in/guides/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Eigen Vector",
+          "item": "https://vectorlab.co.in/#eigen-vector"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Eigenvalues",
+          "item": "https://vectorlab.co.in/guides/eigenvalues.html"
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <div class="wrap">
+      <header><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M5 29V5M5 29h24" stroke="#4a5583" stroke-width="1.5" fill="none"/><path d="M5 29L26 29" stroke="#5cf2b0" stroke-width="2.4"/><path d="M5 29L11 8" stroke="#ff6b6b" stroke-width="2.4"/><path d="M5 29L26 29L32 8L11 8Z" fill="rgba(139,108,255,.25)" stroke="#8b6cff" stroke-width="1"/></svg><div><div class="bn">VectorLab</div><p>Visualize vectors, solve algebra &amp; calculus step by step, with guides</p></div></a><a class="tag" href="/">← Back to the tools</a></header>
+      <div class="shell">
+        <aside
+          class="side glass"><h4>Guides</h4><a href="/guides/matrix-rank.html">Matrix rank</a><a href="/guides/vectors-span.html">Vectors &amp; span</a><a href="/guides/row-reduction.html">Row reduction</a><a href="/guides/null-space-3d.html">Null space &amp; 3D</a><a href="/guides/gaussian-elimination.html">Gaussian elimination</a><a href="/guides/long-division.html">Long division</a><a href="/guides/synthetic-division.html">Synthetic division</a><a href="/guides/partial-fractions.html">Partial fractions</a><h4>Eigen Vector</h4><a href="/guides/eigenvalues.html" class=on>Eigenvalues</a><a href="/guides/eigenvectors.html">Eigenvectors</a><a href="/guides/matrix-diagonalization.html">Matrix diagonalization</a><a href="/guides/eigenvalues-matrix-transformations.html">Eigenvalues &amp; matrix transformations</a><h4>Calculus</h4><a href="/guides/calculus-limits.html">Limits</a><a href="/guides/calculus-differentiation.html">Differentiation</a><a href="/guides/calculus-integration.html">Integration</a><h4>Site</h4><a href="/about.html">About</a><a href="/contact.html">Contact</a></aside>
+        <main class="glass art">
+          <nav class="crumbs"
+            aria-label="Breadcrumb"><a href="/">VectorLab</a><span aria-hidden="true">›</span><a href="/guides/">Guides</a><span aria-hidden="true">›</span><a href="/#eigen-vector">Eigen Vector</a><span aria-hidden="true">›</span><span aria-current="page">Eigenvalues</span></nav>
+          <h1
+            class="gt">Eigenvalues: Meaning, Characteristic Equation and a Worked Example</h1>
+          <p
+            class="gl">An eigenvalue tells you how much a matrix stretches, shrinks or flips one special direction. Here is what that means, how to find eigenvalues with the characteristic equation, and how to check your answer.</p>
+          <ul class="cg-jump" aria-label="On this page">
+            <li><a href="#what">What eigenvalues are</a></li>
+            <li><a href="#intuition">Intuition</a></li>
+            <li><a href="#characteristic-equation">Characteristic equation</a></li>
+            <li><a href="#how-to-calculate">How to calculate</a></li>
+            <li><a href="#worked-example">2×2 worked example</a></li>
+            <li><a href="#repeated">Repeated eigenvalues</a></li>
+            <li><a href="#geometry">Geometric meaning</a></li>
+            <li><a href="#mistakes">Common mistakes</a></li>
+          </ul>
+          <h2 id="what">What eigenvalues are</h2>
+          <p>For a square matrix <span class="tex">A</span>, a number <span class="tex">\lambda</span> is an <strong>eigenvalue</strong> if some non-zero vector <span class="tex">\mathbf v</span> satisfies</p>
+          <div class="tex tex-d">A\mathbf v=\lambda\mathbf v</div>
+          <p>The vector <span class="tex">\mathbf v</span> is an <a href="/guides/eigenvectors.html">eigenvector</a>. In words: multiplying by the whole matrix <span class="tex">A</span> does the same thing to <span class="tex">\mathbf v</span> as multiplying by the single number <span class="tex">\lambda</span>. An <span class="tex">n\times n</span> matrix has at most <span class="tex">n</span> eigenvalues (counted with repeats), and they can be complex numbers.</p>
+          <h2 id="intuition">Intuition</h2>
+          <p>Most vectors are both stretched and turned by a matrix. A few special directions are only <em>scaled</em>. The eigenvalue is that scale factor: <span class="tex">\lambda=3</span> makes the vector three times longer, <span class="tex">\lambda=0.5</span> halves it, <span class="tex">\lambda=-1</span> flips it around, and <span class="tex">\lambda=0</span> squashes it to the origin.</p>
+          <h2 id="characteristic-equation">The characteristic equation</h2>
+          <p>Start from <span class="tex">A\mathbf v=\lambda\mathbf v</span> and move everything to one side:</p>
+          <div class="tex tex-d">(A-\lambda I)\mathbf v=\mathbf 0</div>
+          <p>A non-zero <span class="tex">\mathbf v</span> can only solve this if <span class="tex">A-\lambda I</span> is singular, which means its determinant is zero:</p>
+          <div class="tex tex-d">\det(A-\lambda I)=0</div>
+          <p>This is the <strong>characteristic equation</strong>. The left side is a polynomial in <span class="tex">\lambda</span> of degree <span class="tex">n</span>, called the characteristic polynomial, and its roots are the eigenvalues. For a 2×2 matrix it simplifies to <span class="tex">\lambda^2-\operatorname{tr}(A)\,\lambda+\det(A)=0</span>.</p>
+          <figure class="eg-fig">
+            <svg viewBox="0 0 320 200" role="img"
+              aria-label="Graph of the characteristic polynomial lambda squared minus 7 lambda plus 10 crossing zero at 2 and 5"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 120H312M40 14V190" stroke="#4a5583"
+                stroke-width="1.2" fill="none" />
+              <polyline
+                points="21.0,10.0 24.8,16.3 28.6,22.5 32.4,28.5 36.2,34.3 40.0,40.0 43.8,45.5 47.6,50.9 51.4,56.1 55.2,61.1 59.0,66.0 62.8,70.7 66.6,75.3 70.4,79.7 74.2,83.9 78.0,88.0 81.8,91.9 85.6,95.7 89.4,99.3 93.2,102.7 97.0,106.0 100.8,109.1 104.6,112.1 108.4,114.9 112.2,117.5 116.0,120.0 119.8,122.3 123.6,124.5 127.4,126.5 131.2,128.3 135.0,130.0 138.8,131.5 142.6,132.9 146.4,134.1 150.2,135.1 154.0,136.0 157.8,136.7 161.6,137.3 165.4,137.7 169.2,137.9 173.0,138.0 176.8,137.9 180.6,137.7 184.4,137.3 188.2,136.7 192.0,136.0 195.8,135.1 199.6,134.1 203.4,132.9 207.2,131.5 211.0,130.0 214.8,128.3 218.6,126.5 222.4,124.5 226.2,122.3 230.0,120.0 233.8,117.5 237.6,114.9 241.4,112.1 245.2,109.1 249.0,106.0 252.8,102.7 256.6,99.3 260.4,95.7 264.2,91.9 268.0,88.0 271.8,83.9 275.6,79.7 279.4,75.3 283.2,70.7 287.0,66.0 290.8,61.1 294.6,56.1 298.4,50.9 302.2,45.5 306.0,40.0 309.8,34.3 313.6,28.5 317.4,22.5 321.2,16.3 325.0,10.0"
+                fill="none" stroke="#8b6cff" stroke-width="2.4" />
+              <circle cx="116" cy="120" r="5" fill="#5cf2b0" />
+              <text x="116" y="108" fill="#5cf2b0" font-size="13"
+                text-anchor="middle"
+                font-family="STIX Two Text,serif">λ = 2</text>
+              <circle cx="230" cy="120" r="5" fill="#5cf2b0" />
+              <text x="230" y="108" fill="#5cf2b0" font-size="13"
+                text-anchor="middle"
+                font-family="STIX Two Text,serif">λ = 5</text>
+              <text x="173.0" y="154.0" fill="#8b95b5" font-size="11"
+                text-anchor="middle"
+                font-family="STIX Two Text,serif">p(λ) &lt; 0 between the roots</text>
+              <text x="300" y="136" fill="#8b95b5" font-size="13"
+                text-anchor="end" font-family="STIX Two Text,serif"
+                font-style="italic">λ</text>
+              <text x="48" y="26" fill="#8b6cff" font-size="13"
+                text-anchor="start"
+                font-family="STIX Two Text,serif">p(λ) = λ² − 7λ + 10</text>
+            </svg>
+            <figcaption>The eigenvalues are where the characteristic polynomial crosses zero (matrix A from the worked example below).</figcaption>
+          </figure>
+          <h2 id="how-to-calculate">How to calculate eigenvalues</h2>
+          <ol class="cg-steps">
+            <li>Form <span class="tex">A-\lambda I</span>: subtract <span class="tex">\lambda</span> from each <em>diagonal</em> entry only.</li>
+            <li>Compute <span class="tex">\det(A-\lambda I)</span> to get the characteristic polynomial.</li>
+            <li>Set it equal to zero and solve for <span class="tex">\lambda</span>.</li>
+            <li>Check: the eigenvalues add up to the trace of <span class="tex">A</span> and multiply to <span class="tex">\det(A)</span>.</li>
+          </ol>
+          <h2 id="worked-example">Worked example (2×2)</h2>
+          <div class="cg-ex">
+            <p><strong>Find the eigenvalues of</strong> <span class="tex">A=\begin{bmatrix}4&amp;1\\2&amp;3\end{bmatrix}</span>.</p>
+            <p>Subtract <span class="tex">\lambda</span> on the diagonal and take the determinant:</p>
+            <div
+              class="tex tex-d">\det\begin{bmatrix}4-\lambda&amp;1\\2&amp;3-\lambda\end{bmatrix}=(4-\lambda)(3-\lambda)-2=\lambda^2-7\lambda+10</div>
+            <p>Factor: <span class="tex">\lambda^2-7\lambda+10=(\lambda-5)(\lambda-2)=0</span>, so <strong><span class="tex">\lambda_1=5</span> and <span class="tex">\lambda_2=2</span></strong>.</p>
+            <p>Check: <span class="tex">5+2=7=\operatorname{tr}(A)</span> and <span class="tex">5\cdot2=10=\det(A)</span>. ✓</p>
+          </div>
+          <p
+            class="cg-try">Try it: enter this matrix in the <a href="/#eigen-vector">Eigen Vector tool</a> and compare the steps. Next, find the matching vectors in the <a href="/guides/eigenvectors.html">eigenvectors guide</a>.</p>
+          <h2 id="repeated">Repeated eigenvalues</h2>
+          <p>If a root appears more than once, for example <span class="tex">(\lambda-3)^2=0</span>, the eigenvalue is <strong>repeated</strong>. The number of times it appears is its <em>algebraic multiplicity</em>. Repeats can behave very differently:</p>
+          <ul>
+            <li><span class="tex">\begin{bmatrix}3&amp;0\\0&amp;3\end{bmatrix}</span> has <span class="tex">\lambda=3</span> twice and <strong>two</strong> independent eigenvectors.</li>
+            <li><span class="tex">\begin{bmatrix}1&amp;1\\0&amp;1\end{bmatrix}</span> has <span class="tex">\lambda=1</span> twice but only <strong>one</strong> independent eigenvector.</li>
+          </ul>
+          <p>The number of independent eigenvectors (the <em>geometric multiplicity</em>) is never larger than the algebraic multiplicity. This difference decides whether a matrix can be <a href="/guides/matrix-diagonalization.html">diagonalized</a>.</p>
+          <h2 id="geometry">Geometric meaning</h2>
+          <p>Each real eigenvalue belongs to a line through the origin that the matrix sends to itself. If <span class="tex">|\lambda|&gt;1</span> the line is stretched, if <span class="tex">0&lt;|\lambda|&lt;1</span> it is compressed, a negative <span class="tex">\lambda</span> also flips it, <span class="tex">\lambda=1</span> leaves it fixed and <span class="tex">\lambda=0</span> collapses it (so <span class="tex">\det A=0</span>). Complex eigenvalues mean there is no such line: the matrix rotates. Also, <span class="tex">\det A</span> is the product of the eigenvalues, the factor by which areas change. See <a href="/guides/eigenvalues-matrix-transformations.html">eigenvalues and matrix transformations</a>.</p>
+          <h2 id="mistakes">Common mistakes</h2>
+          <ul>
+            <li>Subtracting <span class="tex">\lambda</span> from every entry instead of only the diagonal.</li>
+            <li>Writing <span class="tex">\det(A)-\lambda</span> instead of <span class="tex">\det(A-\lambda I)</span>.</li>
+            <li>Cancelling a factor of <span class="tex">\lambda</span> and losing the root <span class="tex">\lambda=0</span>.</li>
+            <li>Skipping the trace and determinant check, which catches most slips.</li>
+            <li>Assuming a repeated eigenvalue always gives as many eigenvectors as repeats.</li>
+          </ul>
+          <h2>FAQ</h2>
+          <h3>Can an eigenvalue be zero?</h3>
+          <p>Yes. <span class="tex">\lambda=0</span> is an eigenvalue exactly when the matrix is singular, that is, <span class="tex">\det A=0</span>.</p>
+          <h3>Can eigenvalues be complex?</h3>
+          <p>Yes. A real matrix such as a 90° rotation has the complex eigenvalues <span class="tex">\pm i</span> and no real eigenvectors.</p>
+          <h3>How many eigenvalues does a matrix have?</h3>
+          <p>An <span class="tex">n\times n</span> matrix has exactly <span class="tex">n</span> eigenvalues when counted with multiplicity and allowing complex values.</p>
+          <h2>Related guides</h2>
+          <ul class="eg-rel">
+            <li><a href="/guides/eigenvectors.html">Eigenvectors</a></li>
+            <li><a href="/guides/matrix-diagonalization.html">Matrix diagonalization</a></li>
+            <li><a href="/guides/eigenvalues-matrix-transformations.html">Eigenvalues &amp; matrix transformations</a></li>
+          </ul>
+          <p
+            class="back"><a class="btn" href="/#eigen-vector">Open the Eigen Vector tool →</a></p>
+        </main>
+      </div>
+    </div>
+    <footer
+      class="pf"><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/cookies.html">Cookie Policy</a><a href="/terms.html">Terms of Use</a><p>© 2026 VectorLab. All rights reserved.</p></footer>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+    <script src="/guides/calculus-guides.js"></script>
+  </body>
+</html>

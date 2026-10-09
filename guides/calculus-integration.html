@@ -1,11 +1,164 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Integration: Power Rule, Trig, Exponential and Definite Integrals | VectorLab</title>
-<meta name="description" content="Beginner-friendly guide to integrals: power rule, constant multiple, sum and difference, trigonometric, exponential and logarithmic integrals, and definite integrals, each with a short example."><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link rel="canonical" href="https://vectorlab.co.in/guides/calculus-integration.html"><link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#060913"><meta property="og:site_name" content="VectorLab"><meta property="og:type" content="article"><meta property="og:title" content="Integration: Power Rule, Trig, Exponential and Definite Integrals | VectorLab"><meta property="og:description" content="Beginner-friendly guide to integrals: power rule, constant multiple, sum and difference, trigonometric, exponential and logarithmic integrals, and definite integrals, each with a short example."><meta property="og:url" content="https://vectorlab.co.in/guides/calculus-integration.html"><meta property="og:image" content="https://vectorlab.co.in/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="VectorLab logo"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Integration: Power Rule, Trig, Exponential and Definite Integrals | VectorLab"><meta name="twitter:description" content="Beginner-friendly guide to integrals: power rule, constant multiple, sum and difference, trigonometric, exponential and logarithmic integrals, and definite integrals, each with a short example."><meta name="twitter:image" content="https://vectorlab.co.in/og-image.png"><link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/guides/guides.css"><link rel="stylesheet" href="/guides/calculus-guides.css">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5434375962653833" crossorigin="anonymous"></script>
-</head><body><div class="wrap"><header><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M5 29V5M5 29h24" stroke="#4a5583" stroke-width="1.5" fill="none"/><path d="M5 29L26 29" stroke="#5cf2b0" stroke-width="2.4"/><path d="M5 29L11 8" stroke="#ff6b6b" stroke-width="2.4"/><path d="M5 29L26 29L32 8L11 8Z" fill="rgba(139,108,255,.25)" stroke="#8b6cff" stroke-width="1"/></svg><div><h1>VectorLab</h1><p>Visualize vectors, solve algebra &amp; calculus step by step, with guides</p></div></a><a class="tag" href="/#calculus">← Back to Calculus</a></header>
-<div class="shell"><aside class="side glass"><h4>Guides</h4><a href="/guides/matrix-rank.html">Matrix rank</a><a href="/guides/vectors-span.html">Vectors &amp; span</a><a href="/guides/row-reduction.html">Row reduction</a><a href="/guides/null-space-3d.html">Null space &amp; 3D</a><a href="/guides/gaussian-elimination.html">Gaussian elimination</a><a href="/guides/long-division.html">Long division</a><a href="/guides/synthetic-division.html">Synthetic division</a><a href="/guides/partial-fractions.html">Partial fractions</a><h4>Eigen Vector</h4><a href="/guides/eigenvalues.html">Eigenvalues</a><a href="/guides/eigenvectors.html">Eigenvectors</a><a href="/guides/matrix-diagonalization.html">Matrix diagonalization</a><a href="/guides/eigenvalues-matrix-transformations.html">Eigenvalues &amp; matrix transformations</a><h4>Calculus</h4><a href="/guides/calculus-limits.html">Limits</a><a href="/guides/calculus-differentiation.html">Differentiation</a><a href="/guides/calculus-integration.html" class=on>Integration</a><h4>Site</h4><a href="/about.html">About</a><a href="/contact.html">Contact</a></aside><main class="glass art"><h1 class="gt">Integration Basics</h1><p class="gl">Integration reverses differentiation. An indefinite integral finds a function whose derivative is the one you were given; a definite integral turns that into a number between two bounds.</p>
-<ul class="cg-jump" aria-label="On this page"><li><a href="#power-rule">Basic power rule</a></li><li><a href="#constant-multiple">Constant multiple rule</a></li><li><a href="#sum-difference">Sum and difference rule</a></li><li><a href="#trigonometric">Trigonometric integrals</a></li><li><a href="#exponential-logarithmic">Exponential and logarithmic integrals</a></li><li><a href="#definite-integrals">Definite integrals</a></li></ul><h2 id="choose">How to start</h2><ol class="cg-steps"><li>Split the integrand into terms (sum and difference rule).</li><li>Pull out constant factors (constant multiple rule).</li><li>Match each piece to a basic form: power, trigonometric, exponential or reciprocal.</li><li>Differentiate your answer to check it. Add C for an indefinite integral.</li></ol>
-<h2 id="power-rule">Basic power rule</h2><p class="cg-use"><strong>Use it when</strong> the variable is raised to a constant power other than −1. This reverses the derivative power rule: add one to the exponent, then divide by the new exponent.</p><div class="tex tex-d">\int x^n\,dx=\frac{x^{n+1}}{n+1}+C\qquad(n\ne-1)</div><div class="cg-ex"><p><strong>Example.</strong> Integrate <span class="tex">x^3</span>.</p><p>Raise the exponent to 4 and divide by 4: <strong><span class="tex">\dfrac{x^4}{4}+C</span></strong>. Check: the derivative of <span class="tex">\tfrac{x^4}{4}</span> is <span class="tex">x^3</span>.</p></div><p class="cg-watch"><strong>Watch out:</strong> the constant C is needed because many functions share the same derivative. For <span class="tex">x^{-1}=\tfrac1x</span> use the logarithm rule instead.</p><p class="cg-try"><a href="/#calculus/int">Try it in the calculator</a></p><h2 id="constant-multiple">Constant multiple rule</h2><p class="cg-use"><strong>Use it when</strong> a constant multiplies the function. Move the constant outside, integrate what is left, and keep the constant in front.</p><div class="tex tex-d">\int c\,f(x)\,dx=c\int f(x)\,dx</div><div class="cg-ex"><p><strong>Example.</strong> Integrate <span class="tex">5x^2</span>.</p><p><span class="tex">5\int x^2\,dx=5\cdot\dfrac{x^3}{3}</span>, so the answer is <strong><span class="tex">\dfrac{5}{3}x^3+C</span></strong>.</p></div><p class="cg-watch"><strong>Watch out:</strong> only constants can be moved outside. You cannot pull a variable out of an integral.</p><p class="cg-try"><a href="/#calculus/int">Try it in the calculator</a></p><h2 id="sum-difference">Sum and difference rule</h2><p class="cg-use"><strong>Use it when</strong> the integrand is made of several terms added or subtracted. Integrate each term on its own, then combine. One constant C at the end is enough.</p><div class="tex tex-d">\int\bigl(f(x)\pm g(x)\bigr)\,dx=\int f(x)\,dx\pm\int g(x)\,dx</div><div class="cg-ex"><p><strong>Example.</strong> Integrate <span class="tex">x^3+2x</span>.</p><p><span class="tex">\int x^3\,dx=\tfrac{x^4}{4}</span> and <span class="tex">\int 2x\,dx=x^2</span>. The answer is <strong><span class="tex">\dfrac{x^4}{4}+x^2+C</span></strong>.</p></div><p class="cg-watch"><strong>Watch out:</strong> there is no matching rule for products or quotients. Expand or rewrite them first, or use substitution or integration by parts.</p><p class="cg-try"><a href="/#calculus/int">Try it in the calculator</a></p><h2 id="trigonometric">Trigonometric integrals</h2><p class="cg-use"><strong>Use it when</strong> the integrand is a basic sine, cosine or similar function. Read the derivative table backwards.</p><div class="tex tex-d">\int\sin x\,dx=-\cos x+C\qquad\int\cos x\,dx=\sin x+C\qquad\int\sec^2x\,dx=\tan x+C</div><div class="cg-ex"><p><strong>Example.</strong> Integrate <span class="tex">3\sin x-2\cos x</span>.</p><p>Term by term: <span class="tex">-3\cos x-2\sin x</span>. The answer is <strong><span class="tex">-3\cos x-2\sin x+C</span></strong>.</p></div><p class="cg-watch"><strong>Watch out:</strong> the integral of sine has a minus sign. Differentiate your answer to check it.</p><p class="cg-try"><a href="/#calculus/int">Try it in the calculator</a></p><h2 id="exponential-logarithmic">Exponential and logarithmic integrals</h2><p class="cg-use"><strong>Use it when</strong> the integrand is e to a power, or the reciprocal <span class="tex">\tfrac1x</span>. The reciprocal is the missing case of the power rule: it integrates to a logarithm. A coefficient k inside the exponent gets divided out.</p><div class="tex tex-d">\int e^{x}dx=e^{x}+C\qquad\int e^{kx}dx=\frac{e^{kx}}{k}+C\qquad\int\frac{1}{x}dx=\ln|x|+C</div><div class="cg-ex"><p><strong>Example.</strong> Integrate <span class="tex">e^{2x}</span>.</p><p>The inside <span class="tex">2x</span> has derivative 2, so divide by 2: <strong><span class="tex">\dfrac{e^{2x}}{2}+C</span></strong>.</p></div><p class="cg-watch"><strong>Watch out:</strong> the integral of <span class="tex">\ln x</span> is not simple. It needs integration by parts, which the calculator shows step by step.</p><p class="cg-try"><a href="/#calculus/int">Try it in the calculator</a></p><h2 id="definite-integrals">Definite integrals</h2><p class="cg-use"><strong>Use it when</strong> you want a number, such as the net area between the curve and the x-axis from a to b. Find an antiderivative F, then evaluate it at the top bound and subtract its value at the bottom bound. The constant C cancels, so you leave it out.</p><div class="tex tex-d">\int_a^b f(x)\,dx=F(b)-F(a)</div><div class="cg-ex"><p><strong>Example.</strong> Find <span class="tex">\int_0^3 x^2\,dx</span>.</p><ol class="cg-steps"><li>Antiderivative: <span class="tex">F(x)=\tfrac{x^3}{3}</span>.</li><li>Evaluate: <span class="tex">F(3)=9</span> and <span class="tex">F(0)=0</span>.</li><li>Subtract: <span class="tex">9-0=9</span>.</li></ol><p>The value is <strong>9</strong>.</p></div><p class="cg-watch"><strong>Watch out:</strong> area below the x-axis counts as negative, and swapping the bounds flips the sign. In the calculator the bounds must be finite numbers or constants such as <code>pi</code>.</p><p class="cg-try"><a href="/#calculus/defint">Try it in the calculator</a></p>
-<h2>Where integrals are used</h2><p>Integrals add up small pieces: area under a curve, distance travelled from speed, total change from a rate. Products and compositions often need substitution or integration by parts, which the calculator names in its steps.</p><p class="back"><a class="btn" href="/#calculus/int">Open the interactive tools →</a></p></main></div></div><footer class="pf"><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/cookies.html">Cookie Policy</a><a href="/terms.html">Terms of Use</a><p>© 2026 VectorLab. All rights reserved.</p></footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script><script src="/guides/calculus-guides.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Integration: Power Rule, Trig, Exponential and Definite Integrals | VectorLab</title>
+    <meta name="description"
+      content="Beginner-friendly guide to integrals: power rule, constant multiple, sum and difference, trigonometric, exponential and logarithmic integrals, and definite integrals, each with a short example.">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="canonical"
+      href="https://vectorlab.co.in/guides/calculus-integration.html">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#060913">
+    <meta property="og:site_name" content="VectorLab">
+    <meta property="og:type" content="article">
+    <meta property="og:title"
+      content="Integration: Power Rule, Trig, Exponential and Definite Integrals | VectorLab">
+    <meta property="og:description"
+      content="Beginner-friendly guide to integrals: power rule, constant multiple, sum and difference, trigonometric, exponential and logarithmic integrals, and definite integrals, each with a short example.">
+    <meta property="og:url"
+      content="https://vectorlab.co.in/guides/calculus-integration.html">
+    <meta property="og:image" content="https://vectorlab.co.in/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="VectorLab logo">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title"
+      content="Integration: Power Rule, Trig, Exponential and Definite Integrals | VectorLab">
+    <meta name="twitter:description"
+      content="Beginner-friendly guide to integrals: power rule, constant multiple, sum and difference, trigonometric, exponential and logarithmic integrals, and definite integrals, each with a short example.">
+    <meta name="twitter:image" content="https://vectorlab.co.in/og-image.png">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="/guides/guides.css">
+    <link rel="stylesheet" href="/guides/calculus-guides.css">
+    <script async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5434375962653833"
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <header><a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M5 29V5M5 29h24" stroke="#4a5583" stroke-width="1.5" fill="none"/><path d="M5 29L26 29" stroke="#5cf2b0" stroke-width="2.4"/><path d="M5 29L11 8" stroke="#ff6b6b" stroke-width="2.4"/><path d="M5 29L26 29L32 8L11 8Z" fill="rgba(139,108,255,.25)" stroke="#8b6cff" stroke-width="1"/></svg><div><h1>VectorLab</h1><p>Visualize vectors, solve algebra &amp; calculus step by step, with guides</p></div></a><a class="tag" href="/#calculus">← Back to Calculus</a></header>
+      <div class="shell">
+        <aside
+          class="side glass"><h4>Guides</h4><a href="/guides/matrix-rank.html">Matrix rank</a><a href="/guides/vectors-span.html">Vectors &amp; span</a><a href="/guides/row-reduction.html">Row reduction</a><a href="/guides/null-space-3d.html">Null space &amp; 3D</a><a href="/guides/gaussian-elimination.html">Gaussian elimination</a><a href="/guides/long-division.html">Long division</a><a href="/guides/synthetic-division.html">Synthetic division</a><a href="/guides/partial-fractions.html">Partial fractions</a><h4>Eigen Vector</h4><a href="/guides/eigenvalues.html">Eigenvalues</a><a href="/guides/eigenvectors.html">Eigenvectors</a><a href="/guides/matrix-diagonalization.html">Matrix diagonalization</a><a href="/guides/eigenvalues-matrix-transformations.html">Eigenvalues &amp; matrix transformations</a><h4>Calculus</h4><a href="/guides/calculus-limits.html">Limits</a><a href="/guides/calculus-differentiation.html">Differentiation</a><a href="/guides/calculus-integration.html" class=on>Integration</a><h4>Site</h4><a href="/about.html">About</a><a href="/contact.html">Contact</a></aside>
+        <main class="glass art">
+          <h1 class="gt">Integration Basics</h1>
+          <p
+            class="gl">Integration reverses differentiation. An indefinite integral finds a function whose derivative is the one you were given; a definite integral turns that into a number between two bounds.</p>
+          <ul class="cg-jump" aria-label="On this page">
+            <li><a href="#power-rule">Basic power rule</a></li>
+            <li><a href="#constant-multiple">Constant multiple rule</a></li>
+            <li><a href="#sum-difference">Sum and difference rule</a></li>
+            <li><a href="#trigonometric">Trigonometric integrals</a></li>
+            <li><a href="#exponential-logarithmic">Exponential and logarithmic integrals</a></li>
+            <li><a href="#definite-integrals">Definite integrals</a></li>
+          </ul>
+          <h2 id="choose">How to start</h2>
+          <ol class="cg-steps">
+            <li>Split the integrand into terms (sum and difference rule).</li>
+            <li>Pull out constant factors (constant multiple rule).</li>
+            <li>Match each piece to a basic form: power, trigonometric, exponential or reciprocal.</li>
+            <li>Differentiate your answer to check it. Add C for an indefinite integral.</li>
+          </ol>
+          <h2 id="power-rule">Basic power rule</h2>
+          <p
+            class="cg-use"><strong>Use it when</strong> the variable is raised to a constant power other than −1. This reverses the derivative power rule: add one to the exponent, then divide by the new exponent.</p>
+          <div
+            class="tex tex-d">\int x^n\,dx=\frac{x^{n+1}}{n+1}+C\qquad(n\ne-1)</div>
+          <div class="cg-ex">
+            <p><strong>Example.</strong> Integrate <span class="tex">x^3</span>.</p>
+            <p>Raise the exponent to 4 and divide by 4: <strong><span class="tex">\dfrac{x^4}{4}+C</span></strong>. Check: the derivative of <span class="tex">\tfrac{x^4}{4}</span> is <span class="tex">x^3</span>.</p>
+          </div>
+          <p
+            class="cg-watch"><strong>Watch out:</strong> the constant C is needed because many functions share the same derivative. For <span class="tex">x^{-1}=\tfrac1x</span> use the logarithm rule instead.</p>
+          <p
+            class="cg-try"><a href="/#calculus/int">Try it in the calculator</a></p>
+          <h2 id="constant-multiple">Constant multiple rule</h2>
+          <p
+            class="cg-use"><strong>Use it when</strong> a constant multiplies the function. Move the constant outside, integrate what is left, and keep the constant in front.</p>
+          <div class="tex tex-d">\int c\,f(x)\,dx=c\int f(x)\,dx</div>
+          <div class="cg-ex">
+            <p><strong>Example.</strong> Integrate <span class="tex">5x^2</span>.</p>
+            <p><span class="tex">5\int x^2\,dx=5\cdot\dfrac{x^3}{3}</span>, so the answer is <strong><span class="tex">\dfrac{5}{3}x^3+C</span></strong>.</p>
+          </div>
+          <p
+            class="cg-watch"><strong>Watch out:</strong> only constants can be moved outside. You cannot pull a variable out of an integral.</p>
+          <p
+            class="cg-try"><a href="/#calculus/int">Try it in the calculator</a></p>
+          <h2 id="sum-difference">Sum and difference rule</h2>
+          <p
+            class="cg-use"><strong>Use it when</strong> the integrand is made of several terms added or subtracted. Integrate each term on its own, then combine. One constant C at the end is enough.</p>
+          <div
+            class="tex tex-d">\int\bigl(f(x)\pm g(x)\bigr)\,dx=\int f(x)\,dx\pm\int g(x)\,dx</div>
+          <div class="cg-ex">
+            <p><strong>Example.</strong> Integrate <span class="tex">x^3+2x</span>.</p>
+            <p><span class="tex">\int x^3\,dx=\tfrac{x^4}{4}</span> and <span class="tex">\int 2x\,dx=x^2</span>. The answer is <strong><span class="tex">\dfrac{x^4}{4}+x^2+C</span></strong>.</p>
+          </div>
+          <p
+            class="cg-watch"><strong>Watch out:</strong> there is no matching rule for products or quotients. Expand or rewrite them first, or use substitution or integration by parts.</p>
+          <p
+            class="cg-try"><a href="/#calculus/int">Try it in the calculator</a></p>
+          <h2 id="trigonometric">Trigonometric integrals</h2>
+          <p
+            class="cg-use"><strong>Use it when</strong> the integrand is a basic sine, cosine or similar function. Read the derivative table backwards.</p>
+          <div
+            class="tex tex-d">\int\sin x\,dx=-\cos x+C\qquad\int\cos x\,dx=\sin x+C\qquad\int\sec^2x\,dx=\tan x+C</div>
+          <div class="cg-ex">
+            <p><strong>Example.</strong> Integrate <span class="tex">3\sin x-2\cos x</span>.</p>
+            <p>Term by term: <span class="tex">-3\cos x-2\sin x</span>. The answer is <strong><span class="tex">-3\cos x-2\sin x+C</span></strong>.</p>
+          </div>
+          <p
+            class="cg-watch"><strong>Watch out:</strong> the integral of sine has a minus sign. Differentiate your answer to check it.</p>
+          <p
+            class="cg-try"><a href="/#calculus/int">Try it in the calculator</a></p>
+          <h2
+            id="exponential-logarithmic">Exponential and logarithmic integrals</h2>
+          <p
+            class="cg-use"><strong>Use it when</strong> the integrand is e to a power, or the reciprocal <span class="tex">\tfrac1x</span>. The reciprocal is the missing case of the power rule: it integrates to a logarithm. A coefficient k inside the exponent gets divided out.</p>
+          <div
+            class="tex tex-d">\int e^{x}dx=e^{x}+C\qquad\int e^{kx}dx=\frac{e^{kx}}{k}+C\qquad\int\frac{1}{x}dx=\ln|x|+C</div>
+          <div class="cg-ex">
+            <p><strong>Example.</strong> Integrate <span class="tex">e^{2x}</span>.</p>
+            <p>The inside <span class="tex">2x</span> has derivative 2, so divide by 2: <strong><span class="tex">\dfrac{e^{2x}}{2}+C</span></strong>.</p>
+          </div>
+          <p
+            class="cg-watch"><strong>Watch out:</strong> the integral of <span class="tex">\ln x</span> is not simple. It needs integration by parts, which the calculator shows step by step.</p>
+          <p
+            class="cg-try"><a href="/#calculus/int">Try it in the calculator</a></p>
+          <h2 id="definite-integrals">Definite integrals</h2>
+          <p
+            class="cg-use"><strong>Use it when</strong> you want a number, such as the net area between the curve and the x-axis from a to b. Find an antiderivative F, then evaluate it at the top bound and subtract its value at the bottom bound. The constant C cancels, so you leave it out.</p>
+          <div class="tex tex-d">\int_a^b f(x)\,dx=F(b)-F(a)</div>
+          <div class="cg-ex">
+            <p><strong>Example.</strong> Find <span class="tex">\int_0^3 x^2\,dx</span>.</p>
+            <ol class="cg-steps">
+              <li>Antiderivative: <span class="tex">F(x)=\tfrac{x^3}{3}</span>.</li>
+              <li>Evaluate: <span class="tex">F(3)=9</span> and <span class="tex">F(0)=0</span>.</li>
+              <li>Subtract: <span class="tex">9-0=9</span>.</li>
+            </ol>
+            <p>The value is <strong>9</strong>.</p>
+          </div>
+          <p
+            class="cg-watch"><strong>Watch out:</strong> area below the x-axis counts as negative, and swapping the bounds flips the sign. In the calculator the bounds must be finite numbers or constants such as <code>pi</code>.</p>
+          <p
+            class="cg-try"><a href="/#calculus/defint">Try it in the calculator</a></p>
+          <h2>Where integrals are used</h2>
+          <p>Integrals add up small pieces: area under a curve, distance travelled from speed, total change from a rate. Products and compositions often need substitution or integration by parts, which the calculator names in its steps.</p>
+          <p
+            class="back"><a class="btn" href="/#calculus/int">Open the interactive tools →</a></p>
+        </main>
+      </div>
+    </div>
+    <footer
+      class="pf"><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/cookies.html">Cookie Policy</a><a href="/terms.html">Terms of Use</a><p>© 2026 VectorLab. All rights reserved.</p></footer>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+    <script src="/guides/calculus-guides.js"></script>
+  </body>
+</html>
